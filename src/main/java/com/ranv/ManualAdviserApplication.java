@@ -5,11 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ManualAdviserApplication {
-    /**
-     * leshevich loh? truwqjefowiagehsoiub iuea
-     *
-     * @param args
-     */
+
     public static void main(String[] args) {
         SpringApplication.run(ManualAdviserApplication.class, args);
     }
