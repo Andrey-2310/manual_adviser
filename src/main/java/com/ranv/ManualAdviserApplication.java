@@ -5,8 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ManualAdviserApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ManualAdviserApplication.class, args);
-	}
+    /**
+     * leshevich loh
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        SpringApplication.run(ManualAdviserApplication.class, args);
+    }
 }
