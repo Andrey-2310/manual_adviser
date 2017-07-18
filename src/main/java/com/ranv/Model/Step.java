@@ -20,6 +20,7 @@ public class Step {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "step_id")
     private Long id;
 
     @ManyToOne(fetch=FetchType.LAZY)

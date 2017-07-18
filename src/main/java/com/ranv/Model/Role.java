@@ -19,13 +19,14 @@ import java.util.Set;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "role_id")
     private Long id;
 
     @NotNull
     @Column(name = "role_name")
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @OneToMany( mappedBy="role", cascade=CascadeType.ALL)
     private Set<User> users;
 
     public Role(String name){

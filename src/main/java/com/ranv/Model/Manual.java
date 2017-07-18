@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
 import java.util.Set;
 
 /**
@@ -22,6 +21,7 @@ public class Manual {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "manual_id")
     private Long id;
 
     @NotNull
@@ -29,12 +29,31 @@ public class Manual {
     private String name;
 
     @Column(name = "manual_date")
-    private Date date;
+    private String date;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @Column(name = "manual_image")
+    private String image;
+
+    @Column(name="manual_intro")
+    private String introduction;
+
+    @ManyToOne
     @JoinColumn(name="manual_author")
     private User user;
 
+    @ManyToMany
+    @JoinTable(name = "manual_tag", joinColumns = @JoinColumn(name = "manual_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private Set<Tag> tags;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "manual")
     private Set<Step> steps;
+
+    public Manual(String name, String date, String introduction, User user, Set<Tag> tags) {
+        this.name = name;
+        this.date = date;
+        this.introduction = introduction;
+        this.user = user;
+        this.tags = tags;
+    }
 }

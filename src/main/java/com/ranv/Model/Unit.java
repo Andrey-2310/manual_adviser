@@ -21,13 +21,14 @@ public class Unit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "unit_id")
     private Long id;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="step_id")
     private Step step;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "step")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "unit")
     private Set<Content> contents;
 
 }

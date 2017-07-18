@@ -21,6 +21,7 @@ public class Medal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "medal_id")
     private Long id;
 
     @NotNull
@@ -35,7 +36,7 @@ public class Medal {
     @Column(name = "medal_image")
     private byte[] image;
 
-    @ManyToMany(mappedBy = "medal")
+    @ManyToMany(mappedBy = "medals")
     private Set<User> users;
 
 }

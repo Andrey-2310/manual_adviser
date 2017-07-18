@@ -20,6 +20,7 @@ public class Content {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "content_id")
     private Long id;
 
     @NotNull
