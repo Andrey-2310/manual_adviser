@@ -7,9 +7,7 @@ import com.ranv.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by Андрей on 16.07.2017.
- */
+
 @Service
 public class FulfillingDB {
 

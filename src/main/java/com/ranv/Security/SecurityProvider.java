@@ -13,9 +13,6 @@ import javax.json.*;
 import java.net.URL;
 import java.net.URLConnection;
 
-/**
- * Created by Андрей on 15.07.2017.
- */
 public class SecurityProvider implements AuthenticationProvider {
         private static final Logger LOG= LoggerFactory.getLogger(SecurityProvider.class);
 

@@ -3,9 +3,7 @@ package com.ranv.Security;
 import com.ranv.Model.User;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 
-/**
- * Created by Андрей on 15.07.2017.
- */
+
 public class AuthenticationToken extends AbstractAuthenticationToken {
     private String token;
     public User user;

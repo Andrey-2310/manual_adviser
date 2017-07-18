@@ -7,9 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-/**
- * Created by Андрей on 13.07.2017.
- */
 
 @Entity
 @Table(name = "unit")

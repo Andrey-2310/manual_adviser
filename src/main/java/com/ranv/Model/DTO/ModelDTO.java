@@ -3,9 +3,7 @@ package com.ranv.Model.DTO;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Андрей on 18.07.2017.
- */
+
 public abstract class ModelDTO<U, V> {
 
     abstract protected U convertToItemDTO(V item);

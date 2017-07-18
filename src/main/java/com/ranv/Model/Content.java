@@ -7,9 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by Андрей on 13.07.2017.
- */
+
 
 @Entity
 @Table(name = "comment")

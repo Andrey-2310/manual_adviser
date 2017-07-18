@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by Андрей on 17.07.2017.
- */
 @Service
 public class UserService {
     @Autowired

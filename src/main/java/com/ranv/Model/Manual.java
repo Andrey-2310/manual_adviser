@@ -8,9 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-/**
- * Created by Андрей on 13.07.2017.
- */
 
 @Entity
 @Table(name = "manual")

@@ -6,9 +6,7 @@ import lombok.Setter;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by Андрей on 18.07.2017.
- */
+
 @Getter
 @Setter
 @Component

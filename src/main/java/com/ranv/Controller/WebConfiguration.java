@@ -1,8 +1,6 @@
 package com.ranv.Controller;
 
-/**
- * Created by Андрей on 17.07.2017.
- */
+
 //@Configuration
 //public class WebConfiguration extends WebMvcConfigurerAdapter {
 //

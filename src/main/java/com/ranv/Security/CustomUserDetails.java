@@ -9,9 +9,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by Андрей on 15.07.2017.
- */
+
 public class CustomUserDetails implements UserDetails {
 
     private String username;
