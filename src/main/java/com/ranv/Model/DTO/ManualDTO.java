@@ -1,9 +1,8 @@
 package com.ranv.Model.DTO;
 
-import com.ranv.Model.Manual;
+import com.ranv.Model.ModelDB.Manual;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 
@@ -21,7 +20,7 @@ public class ManualDTO extends ModelDTO<ManualDTO, Manual>{
 
     @Override
     public ManualDTO convertToItemDTO(Manual manual){
-       ManualDTO manualDTO= new ModelMapper().map( manual, ManualDTO.class);
+       ManualDTO manualDTO= modelMapper.map( manual, ManualDTO.class);
        manualDTO.setUserId(manual.getUser().getId());
        return manualDTO;
     }

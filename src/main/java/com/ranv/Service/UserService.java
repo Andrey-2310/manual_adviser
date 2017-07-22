@@ -1,6 +1,6 @@
 package com.ranv.Service;
 
-import com.ranv.Model.User;
+import com.ranv.Model.ModelDB.User;
 import com.ranv.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

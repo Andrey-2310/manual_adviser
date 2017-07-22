@@ -1,4 +1,4 @@
-package com.ranv.Model;
+package com.ranv.Model.ModelDB;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

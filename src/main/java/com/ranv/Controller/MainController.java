@@ -2,12 +2,16 @@ package com.ranv.Controller;
 
 import com.ranv.FulfillingDB.FulfillingDB;
 import com.ranv.Model.DTO.ManualDTO;
+import com.ranv.Model.DTO.TagDTO;
 import com.ranv.Model.DTO.UserDTO;
-import com.ranv.Model.Manual;
-import com.ranv.Model.User;
+import com.ranv.Model.ModelDB.Manual;
+import com.ranv.Model.ModelDB.Tag;
+import com.ranv.Model.ModelDB.User;
 import com.ranv.Service.ManualService;
+import com.ranv.Service.TagService;
 import com.ranv.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +20,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin
 public class MainController {
 
     @Autowired
@@ -23,6 +28,9 @@ public class MainController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TagService tagService;
 
     @Autowired
     private FulfillingDB fulfillingDB;
@@ -33,18 +41,35 @@ public class MainController {
     @Autowired
     private UserDTO userDTO;
 
+    @Autowired
+    private TagDTO tagDTO;
+
     @RequestMapping("/main")
     public User main(@RequestParam(value = "name", defaultValue = "World") String username) {
         return new User();
     }
 
-    @RequestMapping("/manual")
-    public List<UserDTO> manual() {
+    @RequestMapping("/manuals")
+    public List<ManualDTO> manuals() {
         //    fulfillingDB.fulfillDB();
         List<Manual> manuals = manualService.findAll();
+        return manualDTO.convertItems(manuals);
+        // List<ManualDTO> manualDTOS=manualDTO.convertItems(manuals);
+
+    }
+
+    @RequestMapping("/users")
+    public List<UserDTO> users() {
         List<User> users = userService.findAll();
-        List<ManualDTO> manualDTOS=manualDTO.convertItems(manuals);
-        List<UserDTO> userDTOS=userDTO.convertItems(users);
-        return userDTOS;
+        return userDTO.convertItems(users);
+//        List<UserDTO> userDTOS=userDTO.convertItems(users);
+//        return userDTOS;
+    }
+
+    @RequestMapping("/tags")
+    public List<TagDTO> tags() {
+        List<Tag> tags = tagService.findAll();
+        List<TagDTO> tagDTOS=tagDTO.convertItems(tags);
+        return tagDTOS;
     }
 }

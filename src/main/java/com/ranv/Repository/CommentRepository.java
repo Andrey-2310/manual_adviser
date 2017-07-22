@@ -1,6 +1,6 @@
 package com.ranv.Repository;
 
-import com.ranv.Model.Comment;
+import com.ranv.Model.ModelDB.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

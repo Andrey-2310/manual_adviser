@@ -1,6 +1,6 @@
 package com.ranv.Repository;
 
-import com.ranv.Model.Step;
+import com.ranv.Model.ModelDB.Step;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.ranv.Repository;
 
-import com.ranv.Model.Tag;
+import com.ranv.Model.ModelDB.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

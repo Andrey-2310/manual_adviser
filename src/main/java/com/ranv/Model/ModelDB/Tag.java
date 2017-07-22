@@ -1,4 +1,4 @@
-package com.ranv.Model;
+package com.ranv.Model.ModelDB;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,30 +11,28 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "medal")
+@Table(name = "tag")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Medal {
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "medal_id")
+    @Column(name = "tag_id")
     private Long id;
 
     @NotNull
-    @Column(name = "medal_name")
+    @Column(name = "tag_name")
     private String name;
 
-    @NotNull
-    @Column(name = "medal_text")
-    private String text;
+    @Column(name="tag_usage")
+    private Long usage;
 
-    @NotNull
-    @Column(name = "medal_image")
-    private byte[] image;
+    @ManyToMany(mappedBy = "tags")
+    private Set<Manual> manuals;
 
-    @ManyToMany(mappedBy = "medals")
-    private Set<User> users;
-
+    public Tag(String name){
+        this.name=name;
+    }
 }

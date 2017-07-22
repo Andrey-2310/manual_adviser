@@ -1,9 +1,8 @@
 package com.ranv.Model.DTO;
 
-import com.ranv.Model.User;
+import com.ranv.Model.ModelDB.User;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 
@@ -20,7 +19,7 @@ public class UserDTO extends ModelDTO<UserDTO, User> {
 
     @Override
     public UserDTO convertToItemDTO(User user) {
-        UserDTO userDTO = new ModelMapper().map(user, UserDTO.class);
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
         //  userDTO.setUserId(manual.getUser().getId());
         return userDTO;
     }

@@ -1,4 +1,4 @@
-package com.ranv.Model;
+package com.ranv.Model.ModelDB;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,27 +9,25 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 
-
 @Entity
-@Table(name = "tag")
+@Table(name = "role")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Tag {
-
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "tag_id")
+    @Column(name = "role_id")
     private Long id;
 
     @NotNull
-    @Column(name = "tag_name")
+    @Column(name = "role_name")
     private String name;
 
-    @ManyToMany(mappedBy = "tags")
-    private Set<Manual> manuals;
+    @OneToMany( mappedBy="role", cascade=CascadeType.ALL)
+    private Set<User> users;
 
-    public Tag(String name){
+    public Role(String name){
         this.name=name;
     }
 }

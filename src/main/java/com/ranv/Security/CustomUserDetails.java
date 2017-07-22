@@ -1,6 +1,6 @@
 package com.ranv.Security;
 
-import com.ranv.Model.User;
+import com.ranv.Model.ModelDB.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

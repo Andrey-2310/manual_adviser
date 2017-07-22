@@ -1,19 +1,16 @@
 package com.ranv.FulfillingDB;
 
-import com.ranv.Model.Manual;
-import com.ranv.Model.Role;
-import com.ranv.Model.Tag;
-import com.ranv.Model.User;
+import com.ranv.Model.ModelDB.Manual;
+import com.ranv.Model.ModelDB.Role;
+import com.ranv.Model.ModelDB.Tag;
+import com.ranv.Model.ModelDB.User;
 import com.ranv.Repository.RoleRepository;
 import com.ranv.Repository.TagRepository;
 import com.ranv.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Component
 public class Entities {
@@ -26,7 +23,7 @@ public class Entities {
     @Autowired
     private RoleRepository roleRepository;
 
-    public List<Manual> getManuals() {
+    List<Manual> getManuals() {
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =
                 new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -45,13 +42,11 @@ public class Entities {
 
     private Set<Tag> fromArrayToSet(Tag[] tags) {
         Set<Tag> tagSet = new HashSet<>();
-        for (Tag tag : tags) {
-            tagSet.add(tag);
-        }
+        Collections.addAll(tagSet, tags);
         return tagSet;
     }
 
-    public List<User> getUsers(){
+    List<User> getUsers(){
         User[] users=new User[]{
                 new User("Andrey", "https://vk.com/andreyredkovskiy", roleRepository.findOne(1L)),
                 new User("Vlad", "https://vk.com/n__vlad", roleRepository.findOne(2L))
