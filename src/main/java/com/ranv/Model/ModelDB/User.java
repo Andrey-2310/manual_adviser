@@ -31,6 +31,9 @@ public class User {
     @Column(name = "user_identity")
     private String identity;
 
+    @Column(name="user_image")
+    private String image;
+
     @ManyToOne
     @JoinColumn(name="role_id", nullable=false)
     private Role role;

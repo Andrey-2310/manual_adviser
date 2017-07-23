@@ -15,6 +15,7 @@ public class UserDTO extends ModelDTO<UserDTO, User> {
     private String username;
     private String identity;
     private Long roleId;
+    private String image;
 
 
     @Override

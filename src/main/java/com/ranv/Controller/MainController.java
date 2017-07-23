@@ -1,5 +1,6 @@
 package com.ranv.Controller;
 
+import com.cloudinary.Cloudinary;
 import com.ranv.FulfillingDB.FulfillingDB;
 import com.ranv.Model.DTO.ManualDTO;
 import com.ranv.Model.DTO.TagDTO;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -58,6 +61,8 @@ public class MainController {
 
     }
 
+
+
     @RequestMapping("/users")
     public List<UserDTO> users() {
         List<User> users = userService.findAll();
@@ -71,5 +76,17 @@ public class MainController {
         List<Tag> tags = tagService.findAll();
         List<TagDTO> tagDTOS=tagDTO.convertItems(tags);
         return tagDTOS;
+    }
+
+    @Autowired
+    Cloudinary cloudinary;
+
+    @RequestMapping("/image")
+    public void image(){
+        try {
+            Map uploadResult= cloudinary.uploader().upload("C:\\Users\\Андрей\\Downloads\\Mario.jpg", com.cloudinary.utils.ObjectUtils.emptyMap());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
