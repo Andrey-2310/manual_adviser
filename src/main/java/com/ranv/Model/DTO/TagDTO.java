@@ -29,7 +29,7 @@ public class TagDTO extends ModelDTO<TagDTO, Tag> {
         TagDTO tagDTO=new TagDTO();
         tagDTO.setText(tag.getName());
         // Long weight = tag.getUsage();
-        setWeightCustom(tag.getUsage(), tagDTO);
+        setWeightCustom((long) tag.getManuals().size(), tagDTO);
 
         //tagDTO.setText();
         return tagDTO;

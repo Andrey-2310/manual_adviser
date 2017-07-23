@@ -26,8 +26,6 @@ public class Tag {
     @Column(name = "tag_name")
     private String name;
 
-    @Column(name="tag_usage")
-    private Long usage;
 
     @ManyToMany(mappedBy = "tags")
     private Set<Manual> manuals;
