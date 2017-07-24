@@ -28,8 +28,12 @@ public class Entities {
         java.text.SimpleDateFormat sdf =
                 new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return Arrays.asList(
-                new Manual("I love food",sdf.format(dt) , "Blya scha obojrys' kak suka", userRepository.findOne(1L),
-                        fromArrayToSet(new Tag[]{tagRepository.findByName("Havka"), tagRepository.findByName("SosuZaEdu")})),
+                new Manual("Butterfly, Animated.",sdf.format(dt) , "How to make butterfly", userRepository.findOne(1L),
+                        fromArrayToSet(new Tag[]{tagRepository.findByName("HandMade"), tagRepository.findByName("Beaty")})),
+                new Manual("Wood Trailer", sdf.format(dt), "Every man should make three things in his life...", userRepository.findOne(2L),
+                        fromArrayToSet(new Tag[]{tagRepository.findByName("HandMade")})),
+                new Manual("Robotic Arm",sdf.format(dt) , "Future is today", userRepository.findOne(1L),
+                        fromArrayToSet(new Tag[]{tagRepository.findByName("Robot"), tagRepository.findByName("Technology")})),
                 new Manual("Arduino car", sdf.format(dt), "huy dogonish", userRepository.findOne(2L),
                         fromArrayToSet(new Tag[]{tagRepository.findByName("Arduino")}))
         );

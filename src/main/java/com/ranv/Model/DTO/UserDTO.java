@@ -16,12 +16,15 @@ public class UserDTO extends ModelDTO<UserDTO, User> {
     private String identity;
     private Long roleId;
     private String image;
+    private Long manualAmmount;
+    private Long commentAmmount;
 
 
     @Override
     public UserDTO convertToItemDTO(User user) {
         UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-        //  userDTO.setUserId(manual.getUser().getId());
+        userDTO.setCommentAmmount((long)user.getComments().size());
+        userDTO.setManualAmmount((long)user.getManuals().size());
         return userDTO;
     }
 

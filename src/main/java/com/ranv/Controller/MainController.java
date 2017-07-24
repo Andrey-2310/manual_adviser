@@ -89,4 +89,9 @@ public class MainController {
             e.printStackTrace();
         }
     }
+
+    @RequestMapping("/login")
+    public void login(){
+
+    }
 }

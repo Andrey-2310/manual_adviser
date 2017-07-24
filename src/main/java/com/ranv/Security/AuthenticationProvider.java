@@ -3,7 +3,6 @@ package com.ranv.Security;
 import com.ranv.Model.ModelDB.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -13,15 +12,15 @@ import javax.json.*;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class SecurityProvider implements AuthenticationProvider {
-        private static final Logger LOG= LoggerFactory.getLogger(SecurityProvider.class);
+public class AuthenticationProvider implements org.springframework.security.authentication.AuthenticationProvider {
+        private static final Logger LOG= LoggerFactory.getLogger(AuthenticationProvider.class);
 
         /**
          * Домен сайта, который производит аутентификацию.
          */
         private String host;
 
-    public SecurityProvider(String host) {
+    public AuthenticationProvider(String host) {
             this.host=host;
         }
 

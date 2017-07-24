@@ -28,7 +28,7 @@ public class FulfillingDB {
 
     public void fulfillDB() {
         // tagRepository.save(entities.getTags());
-        userRepository.save(entities.getUsers());
+        //userRepository.save(entities.getUsers());
         manualRepository.save(entities.getManuals());
         // roleRepository.save(entities.getRoles());
     }

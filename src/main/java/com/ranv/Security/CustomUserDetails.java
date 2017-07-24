@@ -20,7 +20,7 @@ public class CustomUserDetails implements UserDetails {
         this.username=user.getUsername();
         this.identity=user.getIdentity();
         authorities=new HashSet<>();
-      //  authorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
+        authorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
