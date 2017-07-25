@@ -34,6 +34,12 @@ public class User {
     @Column(name="user_image")
     private String image;
 
+    @Column(name="user_joined")
+    private String date;
+
+    @Column(name="user_origin")
+    private String origin;
+
     @ManyToOne
     @JoinColumn(name="role_id", nullable=false)
     private Role role;
@@ -48,6 +54,7 @@ public class User {
 
     @OneToMany( mappedBy = "user", cascade=CascadeType.ALL)
     private  Set<Comment> comments;
+
 
     public User(String username, String identity, Role role) {
         this.username = username;

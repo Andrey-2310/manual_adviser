@@ -5,6 +5,7 @@ import com.ranv.FulfillingDB.FulfillingDB;
 import com.ranv.Model.DTO.ManualDTO;
 import com.ranv.Model.DTO.TagDTO;
 import com.ranv.Model.DTO.UserDTO;
+import com.ranv.Model.DTO.UserExtendedDTO;
 import com.ranv.Model.ModelDB.Manual;
 import com.ranv.Model.ModelDB.Tag;
 import com.ranv.Model.ModelDB.User;
@@ -43,6 +44,9 @@ public class MainController {
     private UserDTO userDTO;
 
     @Autowired
+    private UserExtendedDTO userExtendedDTO;
+
+    @Autowired
     private TagDTO tagDTO;
 
     @RequestMapping("/main")
@@ -67,6 +71,12 @@ public class MainController {
         return userDTO.convertItems(users);
 //        List<UserDTO> userDTOS=userDTO.convertItems(users);
 //        return userDTOS;
+    }
+
+    @RequestMapping("/users/{username}")
+    public UserExtendedDTO extUsers(@PathVariable String username) {
+        User user = userService.findByUsername(username);
+        return userExtendedDTO.convertToItemDTO(user);
     }
 
     @RequestMapping("/tags")
@@ -97,4 +107,6 @@ public class MainController {
     public List<ManualDTO> getManualsByTag(@PathVariable String tagname){
         return manualDTO.convertItems(new ArrayList<>(tagService.findByName(tagname).getManuals()));
     }
+
+
 }
