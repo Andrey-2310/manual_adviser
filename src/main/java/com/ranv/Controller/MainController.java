@@ -12,12 +12,10 @@ import com.ranv.Service.ManualService;
 import com.ranv.Service.TagService;
 import com.ranv.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +77,7 @@ public class MainController {
     }
 
     @Autowired
-    Cloudinary cloudinary;
+    private Cloudinary cloudinary;
 
     @RequestMapping("/image")
     public void image(){
@@ -93,5 +91,10 @@ public class MainController {
     @RequestMapping("/login")
     public void login(){
 
+    }
+
+    @RequestMapping(path = "manuals/bytag/{tagname}", method = RequestMethod.GET)
+    public List<ManualDTO> getManualsByTag(@PathVariable String tagname){
+        return manualDTO.convertItems(new ArrayList<>(tagService.findByName(tagname).getManuals()));
     }
 }

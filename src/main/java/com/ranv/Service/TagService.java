@@ -16,4 +16,5 @@ public class TagService {
     public List<Tag> findAll(){
         return tagRepository.findAll();
     }
+    public Tag findByName(String name){return tagRepository.findByName(name);}
 }
