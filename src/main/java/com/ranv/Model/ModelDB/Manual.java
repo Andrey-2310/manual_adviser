@@ -46,11 +46,12 @@ public class Manual {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "manual")
     private Set<Step> steps;
 
-    public Manual(String name, String date, String introduction, User user, Set<Tag> tags) {
+    public Manual(String name, String date, String introduction, User user, Set<Tag> tags, String image) {
         this.name = name;
         this.date = date;
         this.introduction = introduction;
         this.user = user;
         this.tags = tags;
+        this.image=image;
     }
 }

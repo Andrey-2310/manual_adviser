@@ -29,13 +29,13 @@ public class Entities {
                 new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return Arrays.asList(
                 new Manual("Butterfly, Animated.",sdf.format(dt) , "How to make butterfly", userRepository.findOne(1L),
-                        fromArrayToSet(new Tag[]{tagRepository.findByName("HandMade"), tagRepository.findByName("Beaty")})),
+                        fromArrayToSet(new Tag[]{tagRepository.findByName("HandMade"), tagRepository.findByName("Beauty")}),"https://cdn.instructables.com/FL4/HRRT/J5CQBR9U/FL4HRRTJ5CQBR9U.MEDIUM.jpg"),
                 new Manual("Wood Trailer", sdf.format(dt), "Every man should make three things in his life...", userRepository.findOne(2L),
-                        fromArrayToSet(new Tag[]{tagRepository.findByName("HandMade")})),
+                        fromArrayToSet(new Tag[]{tagRepository.findByName("HandMade")}), "https://cdn.instructables.com/FIT/P4Y6/J5CQ5XJM/FITP4Y6J5CQ5XJM.MEDIUM.jpg"),
                 new Manual("Robotic Arm",sdf.format(dt) , "Future is today", userRepository.findOne(1L),
-                        fromArrayToSet(new Tag[]{tagRepository.findByName("Robot"), tagRepository.findByName("Technology")})),
-                new Manual("Arduino car", sdf.format(dt), "huy dogonish", userRepository.findOne(2L),
-                        fromArrayToSet(new Tag[]{tagRepository.findByName("Arduino")}))
+                        fromArrayToSet(new Tag[]{tagRepository.findByName("Robot"), tagRepository.findByName("Technology")}), "https://cdn.instructables.com/FDC/4UJG/J5CQ56L7/FDC4UJGJ5CQ56L7.MEDIUM.jpg"),
+                new Manual("Sound Locator", sdf.format(dt), "Pac-man  that runs towards the loudest sound detected!", userRepository.findOne(2L),
+                        fromArrayToSet(new Tag[]{tagRepository.findByName("Micro")}), "https://cdn.instructables.com/F33/OOH2/I4IDDIPZ/F33OOH2I4IDDIPZ.MEDIUM.jpg")
         );
     }
 

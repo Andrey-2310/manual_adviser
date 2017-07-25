@@ -56,7 +56,7 @@ public class MainController {
 
     @RequestMapping("/manuals")
     public List<ManualDTO> manuals() {
-        //    fulfillingDB.fulfillDB();
+        fulfillingDB.fulfillDB();
         List<Manual> manuals = manualService.findAll();
         return manualDTO.convertItems(manuals);
         // List<ManualDTO> manualDTOS=manualDTO.convertItems(manuals);
