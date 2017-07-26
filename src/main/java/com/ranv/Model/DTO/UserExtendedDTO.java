@@ -39,4 +39,8 @@ public class UserExtendedDTO extends ModelDTO<UserExtendedDTO, User> {
         userExtendedDTO.manualDTOS=manualDTO.convertItems(new ArrayList<>(user.getManuals()));
         return userExtendedDTO;
     }
+
+    public User convertFromItemDTO(UserExtendedDTO userExtendedDTO){
+        return modelMapper.map(userExtendedDTO, User.class);
+    }
 }

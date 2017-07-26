@@ -116,9 +116,14 @@ public class MainController {
     private HibernateSearch hibernateSearch;
 
     @RequestMapping(path = "manuals/{keyword}")
-    public List<ManualDTO> getManualsByKeyWord(@PathVariable  String keyword) {
-      List<ManualDTO> manuals=  manualDTO.convertItems(hibernateSearch.fulltextSearching(keyword));
+    public List<ManualDTO> getManualsByKeyWord(@PathVariable String keyword) {
+        List<ManualDTO> manuals = manualDTO.convertItems(hibernateSearch.fulltextSearching(keyword));
         return manuals;
+    }
+
+    @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
+    public void kek( @RequestBody UserExtendedDTO userExtDTO) {
+         userService.updateUser(userExtendedDTO.convertFromItemDTO(userExtDTO));
     }
 
 }
