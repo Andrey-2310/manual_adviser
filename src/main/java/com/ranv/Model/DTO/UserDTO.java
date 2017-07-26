@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDTO extends ModelDTO<UserDTO, User> {
 
-
+    private Long id;
     private String username;
     private String identity;
     private Long roleId;
@@ -23,8 +23,8 @@ public class UserDTO extends ModelDTO<UserDTO, User> {
     @Override
     public UserDTO convertToItemDTO(User user) {
         UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-        userDTO.setCommentAmount((long)user.getComments().size());
-        userDTO.setManualAmount((long)user.getManuals().size());
+        userDTO.setCommentAmount((long) user.getComments().size());
+        userDTO.setManualAmount((long) user.getManuals().size());
         return userDTO;
     }
 

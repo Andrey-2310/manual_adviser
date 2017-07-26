@@ -22,6 +22,7 @@ public class UserExtendedDTO extends ModelDTO<UserExtendedDTO, User> {
     @JsonIgnore
     private ManualDTO manualDTO;
 
+    private Long id;
     private String username;
     private String identity;
     private String image;
@@ -37,5 +38,9 @@ public class UserExtendedDTO extends ModelDTO<UserExtendedDTO, User> {
         UserExtendedDTO userExtendedDTO = modelMapper.map(user, UserExtendedDTO.class);
         userExtendedDTO.manualDTOS=manualDTO.convertItems(new ArrayList<>(user.getManuals()));
         return userExtendedDTO;
+    }
+
+    public User convertFromItemDTO(UserExtendedDTO userExtendedDTO){
+        return modelMapper.map(userExtendedDTO, User.class);
     }
 }

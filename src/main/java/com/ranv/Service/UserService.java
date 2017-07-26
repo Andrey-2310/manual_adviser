@@ -19,4 +19,14 @@ public class UserService {
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    public User findById(Long id){ return  userRepository.findOne(id);}
+
+    public void updateUser(User newUser){
+        User oldUser =userRepository.findOne(newUser.getId());
+        oldUser.setUsername(newUser.getUsername());
+        oldUser.setOrigin(newUser.getOrigin());
+        oldUser.setImage(newUser.getImage());
+        userRepository.save(oldUser);
+    }
 }
