@@ -3,6 +3,7 @@ package com.ranv.Model.ModelDB;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.search.annotations.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,6 +25,7 @@ public class Tag {
 
     @NotNull
     @Column(name = "tag_name")
+    @Field
     private String name;
 
 

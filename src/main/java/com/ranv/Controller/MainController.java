@@ -9,14 +9,13 @@ import com.ranv.Model.DTO.UserExtendedDTO;
 import com.ranv.Model.ModelDB.Manual;
 import com.ranv.Model.ModelDB.Tag;
 import com.ranv.Model.ModelDB.User;
+import com.ranv.Repository.FulltextSearch.HibernateSearch;
 import com.ranv.Service.ManualService;
 import com.ranv.Service.TagService;
 import com.ranv.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.WebResult;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +65,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
-    public void kek(HttpServletResponse response, @RequestBody UserExtendedDTO user) {
+    public void kek(@RequestBody UserExtendedDTO user) {
 
     }
 
@@ -95,23 +94,31 @@ public class MainController {
     private Cloudinary cloudinary;
 
     @RequestMapping("/image")
-    public void image(){
+    public void image() {
         try {
-            Map uploadResult= cloudinary.uploader().upload("C:\\Users\\Андрей\\Downloads\\Mario.jpg", com.cloudinary.utils.ObjectUtils.emptyMap());
+            Map uploadResult = cloudinary.uploader().upload("C:\\Users\\Андрей\\Downloads\\Mario.jpg", com.cloudinary.utils.ObjectUtils.emptyMap());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @RequestMapping("/login")
-    public void login(){
+    public void login() {
 
     }
 
     @RequestMapping(path = "manuals/bytag/{tagname}", method = RequestMethod.GET)
-    public List<ManualDTO> getManualsByTag(@PathVariable String tagname){
+    public List<ManualDTO> getManualsByTag(@PathVariable String tagname) {
         return manualDTO.convertItems(new ArrayList<>(tagService.findByName(tagname).getManuals()));
     }
 
+    @Autowired
+    private HibernateSearch hibernateSearch;
+
+    @RequestMapping(path = "manuals/{keyword}")
+    public List<ManualDTO> getManualsByKeyWord(@PathVariable  String keyword) {
+      List<ManualDTO> manuals=  manualDTO.convertItems(hibernateSearch.fulltextSearching(keyword));
+        return manuals;
+    }
 
 }
