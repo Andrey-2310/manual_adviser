@@ -15,6 +15,8 @@ import com.ranv.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebResult;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,14 +58,17 @@ public class MainController {
 
     @RequestMapping("/manuals")
     public List<ManualDTO> manuals() {
-        fulfillingDB.fulfillDB();
+        //fulfillingDB.fulfillDB();
         List<Manual> manuals = manualService.findAll();
         return manualDTO.convertItems(manuals);
         // List<ManualDTO> manualDTOS=manualDTO.convertItems(manuals);
 
     }
 
+    @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
+    public void kek(HttpServletResponse response, @RequestBody UserExtendedDTO user) {
 
+    }
 
     @RequestMapping("/users")
     public List<UserDTO> users() {
@@ -73,16 +78,16 @@ public class MainController {
 //        return userDTOS;
     }
 
-    @RequestMapping("/users/{username}")
-    public UserExtendedDTO extUsers(@PathVariable String username) {
-        User user = userService.findByUsername(username);
+    @RequestMapping("/users/{id}")
+    public UserExtendedDTO extUsers(@PathVariable Long id) {
+        User user = userService.findOne(id);
         return userExtendedDTO.convertToItemDTO(user);
     }
 
     @RequestMapping("/tags")
     public List<TagDTO> tags() {
         List<Tag> tags = tagService.findAll();
-        List<TagDTO> tagDTOS=tagDTO.convertItems(tags);
+        List<TagDTO> tagDTOS = tagDTO.convertItems(tags);
         return tagDTOS;
     }
 

@@ -19,7 +19,6 @@ public abstract class ModelDTO<U, V> {
             itemsDTO.add(convertToItemDTO(item));
         }
 
-
         return itemsDTO;
     }
 }

@@ -22,6 +22,7 @@ public class UserExtendedDTO extends ModelDTO<UserExtendedDTO, User> {
     @JsonIgnore
     private ManualDTO manualDTO;
 
+    private Long id;
     private String username;
     private String identity;
     private String image;

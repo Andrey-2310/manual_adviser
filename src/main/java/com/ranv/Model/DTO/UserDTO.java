@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDTO extends ModelDTO<UserDTO, User> {
 
-
+    private Long id;
     private String username;
     private String identity;
     private Long roleId;
