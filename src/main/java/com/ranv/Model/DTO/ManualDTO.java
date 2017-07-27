@@ -17,6 +17,7 @@ import java.util.Set;
 @Component
 public class ManualDTO extends ModelDTO<ManualDTO, Manual> {
 
+    private Long id;
     private String name;
     private String date;
     private String image;

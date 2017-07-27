@@ -1,5 +1,6 @@
 package com.ranv.Model.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public abstract class ModelDTO<U, V> {
 
     @Autowired
+    @JsonIgnore
     ModelMapper modelMapper;
     abstract protected U convertToItemDTO(V item);
 

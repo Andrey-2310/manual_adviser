@@ -22,7 +22,7 @@ public class ManualService {
         return manualRepository.findByPublished(true);
     }
 
-    public void saveManual(Manual manual) {
-        manualRepository.save(manual);
+    public Long saveManual(Manual manual) {
+        return manualRepository.save(manual).getId();
     }
 }

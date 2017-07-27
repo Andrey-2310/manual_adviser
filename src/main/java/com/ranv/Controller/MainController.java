@@ -126,8 +126,10 @@ public class MainController {
     }
 
     @RequestMapping(value = "/newinstruction", method = RequestMethod.POST)
-    public void newInstruction( @RequestBody ManualDTO manDTO) {
-        manualService.saveManual(manualDTO.convertFromItemDTO(manDTO));
+    public Long newInstruction( @RequestBody ManualDTO manDTO) {
+        Long id = manualService.saveManual(manualDTO.convertFromItemDTO(manDTO));
+        System.out.println(id);
+        return id;
     }
 
     @Autowired
@@ -141,8 +143,8 @@ public class MainController {
         ratingService.saveRating(this.ratingDTO.convertFromItemDTO(ratingDTO));
     }
 
-    @RequestMapping(value = "/setRating", method = RequestMethod.GET)
-    public void setRating() {
-       fulfillingDB.fulfillDB();
-    }
+//    @RequestMapping(value = "/setRating", method = RequestMethod.GET)
+//    public void setRating() {
+//       fulfillingDB.fulfillDB();
+//    }
 }

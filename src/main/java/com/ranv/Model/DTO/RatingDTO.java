@@ -1,5 +1,6 @@
 package com.ranv.Model.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ranv.Model.ModelDB.Rating;
 import com.ranv.Repository.ManualRepository;
 import com.ranv.Repository.UserRepository;
@@ -30,8 +31,10 @@ public class RatingDTO extends ModelDTO<RatingDTO, Rating> {
 
 
     @Autowired
+    @JsonIgnore
     UserRepository userRepository;
     @Autowired
+    @JsonIgnore
     ManualRepository manualRepository;
 
     public Rating convertFromItemDTO(RatingDTO ratingDTO){
