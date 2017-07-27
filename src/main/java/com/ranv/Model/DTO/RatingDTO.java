@@ -15,15 +15,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class RatingDTO extends ModelDTO<RatingDTO, Rating> {
 
-    private Long userId;
-    private Long manualId;
+    private Long user;
+    private Long manual;
     private Long value;
 
     @Override
     protected RatingDTO convertToItemDTO(Rating rating) {
         RatingDTO ratingDTO = modelMapper.map(rating, RatingDTO.class);
-        ratingDTO.setManualId(rating.getManual().getId());
-        ratingDTO.setUserId(rating.getUser().getId());
+        ratingDTO.setManual(rating.getManual().getId());
+        ratingDTO.setUser(rating.getUser().getId());
         return ratingDTO;
     }
 
@@ -37,8 +37,8 @@ public class RatingDTO extends ModelDTO<RatingDTO, Rating> {
 
     public Rating convertFromItemDTO(RatingDTO ratingDTO){
         Rating rating=modelMapper.map(ratingDTO, Rating.class);
-        rating.setUser(userRepository.findOne(ratingDTO.getUserId()));
-        rating.setManual(manualRepository.findOne(ratingDTO.getManualId()));
+        rating.setUser(userRepository.findOne(ratingDTO.getUser()));
+        rating.setManual(manualRepository.findOne(ratingDTO.getManual()));
         return rating;
     }
 }
