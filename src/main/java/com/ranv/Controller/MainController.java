@@ -62,9 +62,10 @@ public class MainController {
 
     }
 
-    @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
-    public void kek(@RequestBody UserExtendedDTO user) {
-
+    @RequestMapping("/publishedmanuals")
+    public List<ManualDTO> publishedManuals() {
+        List<Manual> manuals = manualService.findPublished();
+        return manualDTO.convertItems(manuals);
     }
 
     @RequestMapping("/users")
@@ -120,8 +121,13 @@ public class MainController {
     }
 
     @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
-    public void kek(@RequestBody UserExtendedDTO userExtDTO) {
+    public void updateUser( @RequestBody UserExtendedDTO userExtDTO) {
         userService.updateUser(userExtendedDTO.convertFromItemDTO(userExtDTO));
+    }
+
+    @RequestMapping(value = "/newinstruction", method = RequestMethod.POST)
+    public void newInstruction( @RequestBody ManualDTO manDTO) {
+        manualService.saveManual(manualDTO.convertFromItemDTO(manDTO));
     }
 
     @Autowired

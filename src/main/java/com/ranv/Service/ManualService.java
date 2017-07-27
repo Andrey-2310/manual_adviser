@@ -18,6 +18,11 @@ public class ManualService {
         return manualRepository.findAll();
     }
 
+    public List<Manual> findPublished(){
+        return manualRepository.findByPublished(true);
+    }
 
-
+    public void saveManual(Manual manual) {
+        manualRepository.save(manual);
+    }
 }

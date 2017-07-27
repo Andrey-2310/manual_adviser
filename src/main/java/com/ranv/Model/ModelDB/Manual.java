@@ -41,6 +41,9 @@ public class Manual {
     @Field
     private String introduction;
 
+    @Column(name="manual_published")
+    boolean published;
+
     @ManyToOne
     @JoinColumn(name="manual_author")
     @IndexedEmbedded

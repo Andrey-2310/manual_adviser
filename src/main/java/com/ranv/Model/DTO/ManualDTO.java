@@ -22,6 +22,7 @@ public class ManualDTO extends ModelDTO<ManualDTO, Manual> {
     private String image;
     private String introduction;
     private String username;
+    private boolean published;
     private List<String> tagNames;
     private Long rating;
 
@@ -42,5 +43,9 @@ public class ManualDTO extends ModelDTO<ManualDTO, Manual> {
         for(Rating rat:ratings){
             rating+=rat.getValue();
         }
+    }
+
+    public Manual convertFromItemDTO(ManualDTO manualDTO){
+        return modelMapper.map(manualDTO, Manual.class);
     }
 }
