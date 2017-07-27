@@ -31,7 +31,7 @@ public class ManualDTO extends ModelDTO<ManualDTO, Manual> {
     public ManualDTO convertToItemDTO(Manual manual) {
         ManualDTO manualDTO = modelMapper.map(manual, ManualDTO.class);
         manualDTO.setUsername(manual.getUser().getUsername());
-        manualDTO.setRating(manual.getRatings());
+        manualDTO.setRatingCustom(manual.getRatings());
         manualDTO.tagNames = new ArrayList<>();
         for (Tag tag : manual.getTags()) {
             manualDTO.tagNames.add(tag.getName());
@@ -39,7 +39,7 @@ public class ManualDTO extends ModelDTO<ManualDTO, Manual> {
         return manualDTO;
     }
 
-    private void setRating(Set<Rating> ratings){
+    private void setRatingCustom(Set<Rating> ratings){
         rating=0L;
         for(Rating rat:ratings){
             rating+=rat.getValue();
