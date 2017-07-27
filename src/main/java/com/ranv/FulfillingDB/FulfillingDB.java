@@ -1,9 +1,7 @@
 package com.ranv.FulfillingDB;
 
-import com.ranv.Repository.ManualRepository;
-import com.ranv.Repository.RoleRepository;
-import com.ranv.Repository.TagRepository;
-import com.ranv.Repository.UserRepository;
+import com.ranv.Model.ModelDB.Rating;
+import com.ranv.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +22,16 @@ public class FulfillingDB {
     private RoleRepository roleRepository;
 
     @Autowired
+    private RatingRepository ratingRepository;
+
+    @Autowired
     private Entities entities;
 
     public void fulfillDB() {
         // tagRepository.save(entities.getTags());
         //userRepository.save(entities.getUsers());
-        manualRepository.save(entities.getManuals());
+        //manualRepository.save(entities.getManuals());
         // roleRepository.save(entities.getRoles());
+        ratingRepository.save(new Rating(userRepository.findOne(1L), manualRepository.findOne(1L), 1L));
     }
 }

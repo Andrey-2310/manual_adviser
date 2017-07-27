@@ -2,15 +2,13 @@ package com.ranv.Controller;
 
 import com.cloudinary.Cloudinary;
 import com.ranv.FulfillingDB.FulfillingDB;
-import com.ranv.Model.DTO.ManualDTO;
-import com.ranv.Model.DTO.TagDTO;
-import com.ranv.Model.DTO.UserDTO;
-import com.ranv.Model.DTO.UserExtendedDTO;
+import com.ranv.Model.DTO.*;
 import com.ranv.Model.ModelDB.Manual;
 import com.ranv.Model.ModelDB.Tag;
 import com.ranv.Model.ModelDB.User;
 import com.ranv.Repository.FulltextSearch.HibernateSearch;
 import com.ranv.Service.ManualService;
+import com.ranv.Service.RatingService;
 import com.ranv.Service.TagService;
 import com.ranv.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +55,7 @@ public class MainController {
 
     @RequestMapping("/manuals")
     public List<ManualDTO> manuals() {
-        //fulfillingDB.fulfillDB();
+      //  fulfillingDB.fulfillDB();
         List<Manual> manuals = manualService.findAll();
         return manualDTO.convertItems(manuals);
         // List<ManualDTO> manualDTOS=manualDTO.convertItems(manuals);
@@ -122,8 +120,23 @@ public class MainController {
     }
 
     @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
-    public void kek( @RequestBody UserExtendedDTO userExtDTO) {
-         userService.updateUser(userExtendedDTO.convertFromItemDTO(userExtDTO));
+    public void kek(@RequestBody UserExtendedDTO userExtDTO) {
+        userService.updateUser(userExtendedDTO.convertFromItemDTO(userExtDTO));
     }
 
+    @Autowired
+    RatingDTO ratingDTO;
+
+    @Autowired
+    RatingService ratingService;
+
+    @RequestMapping(value = "/setRating", method = RequestMethod.POST)
+    public void setRating(@RequestBody RatingDTO ratingDTO) {
+        ratingService.saveRating(this.ratingDTO.convertFromItemDTO(ratingDTO));
+    }
+
+    @RequestMapping(value = "/setRating", method = RequestMethod.GET)
+    public void setRating() {
+       fulfillingDB.fulfillDB();
+    }
 }
