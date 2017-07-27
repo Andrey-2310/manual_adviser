@@ -58,6 +58,9 @@ public class User {
     private  Set<Comment> comments;
 
 
+    @OneToMany(mappedBy = "user",  cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Rating> ratings;
+
     public User(String username, String identity, Role role) {
         this.username = username;
         this.identity = identity;
