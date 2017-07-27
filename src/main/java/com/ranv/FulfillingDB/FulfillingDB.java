@@ -1,6 +1,5 @@
 package com.ranv.FulfillingDB;
 
-import com.ranv.Model.ModelDB.Rating;
 import com.ranv.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +29,9 @@ public class FulfillingDB {
     public void fulfillDB() {
         // tagRepository.save(entities.getTags());
         //userRepository.save(entities.getUsers());
-        //manualRepository.save(entities.getManuals());
+       // manualRepository.save(entities.getManuals());
+        manualRepository.save(entities.getRandomManual(1));
         // roleRepository.save(entities.getRoles());
-        ratingRepository.save(new Rating(userRepository.findOne(1L), manualRepository.findOne(1L), 1L));
+        //ratingRepository.save(new Rating(userRepository.findOne(1L), manualRepository.findOne(1L), 1L));
     }
 }

@@ -143,8 +143,10 @@ public class MainController {
         ratingService.saveRating(this.ratingDTO.convertFromItemDTO(ratingDTO));
     }
 
-//    @RequestMapping(value = "/setRating", method = RequestMethod.GET)
-//    public void setRating() {
-//       fulfillingDB.fulfillDB();
-//    }
+    @RequestMapping(value = "/setRating", method = RequestMethod.GET)
+    public void setRating() {
+       fulfillingDB.fulfillDB();
+
+      //  ratingService.saveRating(this.ratingDTO.convertFromItemDTO(ratingDTO));
+    }
 }

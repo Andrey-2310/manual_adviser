@@ -9,9 +9,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by Андрей on 27.07.2017.
- */
+
 @Getter
 @Setter
 @Component
