@@ -7,10 +7,11 @@ import com.ranv.Model.ModelDB.Manual;
 import com.ranv.Model.ModelDB.Tag;
 import com.ranv.Model.ModelDB.User;
 import com.ranv.Repository.FulltextSearch.HibernateSearch;
-import com.ranv.Service.ManualService;
-import com.ranv.Service.RatingService;
-import com.ranv.Service.TagService;
-import com.ranv.Service.UserService;
+import com.ranv.Service.ServiceDTO.*;
+import com.ranv.Service.ServiceModel.ManualService;
+import com.ranv.Service.ServiceModel.RatingService;
+import com.ranv.Service.ServiceModel.TagService;
+import com.ranv.Service.ServiceModel.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,27 +38,26 @@ public class MainController {
     private FulfillingDB fulfillingDB;
 
     @Autowired
-    private ManualDTO manualDTO;
+    private ServiceUserExtendedDTO serviceUserExtendedDTO;
 
     @Autowired
-    private UserDTO userDTO;
+    private ServiceUserDTO serviceUserDTO;
 
     @Autowired
-    private UserExtendedDTO userExtendedDTO;
+    private ServiceTagDTO serviceTagDTO;
 
     @Autowired
-    private TagDTO tagDTO;
+    private ServiceRatingDTO serviceRatingDTO;
 
-    @RequestMapping("/main")
-    public User main(@RequestParam(value = "name", defaultValue = "World") String username) {
-        return new User();
-    }
+    @Autowired
+    private ServiceManualDTO serviceManualDTO;
+
 
     @RequestMapping("/manuals")
     public List<ManualDTO> manuals() {
-      //  fulfillingDB.fulfillDB();
+        //  fulfillingDB.fulfillDB();
         List<Manual> manuals = manualService.findAll();
-        return manualDTO.convertItems(manuals);
+        return serviceManualDTO.convertItems(manuals);
         // List<ManualDTO> manualDTOS=manualDTO.convertItems(manuals);
 
     }
@@ -65,13 +65,13 @@ public class MainController {
     @RequestMapping("/publishedmanuals")
     public List<ManualDTO> publishedManuals() {
         List<Manual> manuals = manualService.findPublished();
-        return manualDTO.convertItems(manuals);
+        return serviceManualDTO.convertItems(manuals);
     }
 
     @RequestMapping("/users")
     public List<UserDTO> users() {
         List<User> users = userService.findAll();
-        return userDTO.convertItems(users);
+        return serviceUserDTO.convertItems(users);
 //        List<UserDTO> userDTOS=userDTO.convertItems(users);
 //        return userDTOS;
     }
@@ -79,13 +79,13 @@ public class MainController {
     @RequestMapping("/users/{id}")
     public UserExtendedDTO extUsers(@PathVariable Long id) {
         User user = userService.findOne(id);
-        return userExtendedDTO.convertToItemDTO(user);
+        return serviceUserExtendedDTO.convertToItemDTO(user);
     }
 
     @RequestMapping("/tags")
     public List<TagDTO> tags() {
         List<Tag> tags = tagService.findAll();
-        List<TagDTO> tagDTOS = tagDTO.convertItems(tags);
+        List<TagDTO> tagDTOS = serviceTagDTO.convertItems(tags);
         return tagDTOS;
     }
 
@@ -108,7 +108,7 @@ public class MainController {
 
     @RequestMapping(path = "manuals/bytag/{tagname}", method = RequestMethod.GET)
     public List<ManualDTO> getManualsByTag(@PathVariable String tagname) {
-        return manualDTO.convertItems(new ArrayList<>(tagService.findByName(tagname).getManuals()));
+        return serviceManualDTO.convertItems(new ArrayList<>(tagService.findByName(tagname).getManuals()));
     }
 
     @Autowired
@@ -116,18 +116,18 @@ public class MainController {
 
     @RequestMapping(path = "manuals/{keyword}")
     public List<ManualDTO> getManualsByKeyWord(@PathVariable String keyword) {
-        List<ManualDTO> manuals = manualDTO.convertItems(hibernateSearch.fulltextSearching(keyword));
+        List<ManualDTO> manuals = serviceManualDTO.convertItems(hibernateSearch.fulltextSearching(keyword));
         return manuals;
     }
 
     @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
-    public void updateUser( @RequestBody UserExtendedDTO userExtDTO) {
-        userService.updateUser(userExtendedDTO.convertFromItemDTO(userExtDTO));
+    public void updateUser(@RequestBody UserExtendedDTO userExtDTO) {
+        userService.updateUser(serviceUserExtendedDTO.convertFromItemDTO(userExtDTO));
     }
 
     @RequestMapping(value = "/newinstruction", method = RequestMethod.POST)
-    public Long newInstruction( @RequestBody ManualDTO manDTO) {
-        Long id = manualService.saveManual(manualDTO.convertFromItemDTO(manDTO));
+    public Long newInstruction(@RequestBody ManualDTO manDTO) {
+        Long id = manualService.saveManual(serviceManualDTO.convertFromItemDTO(manDTO));
         System.out.println(id);
         return id;
     }
@@ -140,13 +140,13 @@ public class MainController {
 
     @RequestMapping(value = "/setRating", method = RequestMethod.POST)
     public void setRating(@RequestBody RatingDTO ratingDTO) {
-        ratingService.saveRating(this.ratingDTO.convertFromItemDTO(ratingDTO));
+        ratingService.saveRating(serviceRatingDTO.convertFromItemDTO(ratingDTO));
     }
 
-    @RequestMapping(value = "/setRating", method = RequestMethod.GET)
-    public void setRating() {
-       fulfillingDB.fulfillDB();
 
-      //  ratingService.saveRating(this.ratingDTO.convertFromItemDTO(ratingDTO));
+    @RequestMapping(value = "/popularManuals")
+    public List<ManualDTO> getPopularManuals() {
+        return serviceManualDTO.getPopularManuals();
     }
+
 }
