@@ -21,6 +21,7 @@ public class UserExtendedDTO {
     private String image;
     private String date;
     private String origin;
+    private Long roleId;
     private Set<Medal> medals;
     private List<ManualDTO> manualDTOS;
     private Set<Comment> comments;

@@ -22,11 +22,7 @@ public class UserService {
 
     public User findById(Long id){ return  userRepository.findOne(id);}
 
-    public void updateUser(User newUser){
-        User oldUser =userRepository.findOne(newUser.getId());
-        oldUser.setUsername(newUser.getUsername());
-        oldUser.setOrigin(newUser.getOrigin());
-        oldUser.setImage(newUser.getImage());
-        userRepository.save(oldUser);
+    public void updateUser(User user){
+        userRepository.save(user);
     }
 }

@@ -18,6 +18,10 @@ public class ManualService {
         return manualRepository.findAll();
     }
 
+    public Manual findOne(Long id) {
+        return manualRepository.findOne(id);
+    }
+
     public List<Manual> findPublished(){
         return manualRepository.findByPublished(true);
     }
@@ -26,5 +30,8 @@ public class ManualService {
         return manualRepository.save(manual).getId();
     }
 
+    public void updateManual(Manual manual){
+        manualRepository.save(manual);
+    }
 
 }

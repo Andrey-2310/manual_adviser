@@ -54,7 +54,8 @@ public class Entities {
                     sdf.format(dt),
                     new BigInteger(130, random).toString(32),
                     userRepository.findOne(random.nextInt(2)+1L),
-                    fromArrayToSet(new Tag[]{tagRepository.findOne(random.nextInt(6)+1L)}),
+                    fromArrayToSet(new Tag[]{tagRepository.findOne(15L)}),
+                    //fromArrayToSet(new Tag[]{tagRepository.findOne(random.nextInt(6)+1L)}),
                     "https://cdn.instructables.com/FIT/P4Y6/J5CQ5XJM/FITP4Y6J5CQ5XJM.MEDIUM.jpg"
             ));
         }

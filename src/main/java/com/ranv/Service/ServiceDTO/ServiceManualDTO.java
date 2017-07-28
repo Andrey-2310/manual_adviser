@@ -20,6 +20,7 @@ public class ServiceManualDTO extends ServiceModelDTO<ManualDTO, Manual>{
     public ManualDTO convertToItemDTO(Manual manual) {
         ManualDTO manualDTO = modelMapper.map(manual, ManualDTO.class);
         manualDTO.setUsername(manual.getUser().getUsername());
+        manualDTO.setUserId(manual.getUser().getId());
         manualDTO.setRatingCustom(manual.getRatings());
         List<String> tagNames = new ArrayList<>();
         for (Tag tag : manual.getTags()) {

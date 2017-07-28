@@ -17,6 +17,7 @@ public class ServiceUserExtendedDTO extends ServiceModelDTO<UserExtendedDTO, Use
     public UserExtendedDTO convertToItemDTO(User user) {
         UserExtendedDTO userExtendedDTO = modelMapper.map(user, UserExtendedDTO.class);
         userExtendedDTO.setManualDTOS(serviceManualDTO.convertItems(new ArrayList<>(user.getManuals())));
+        userExtendedDTO.setRoleId(user.getRole().getId());
         return userExtendedDTO;
     }
 

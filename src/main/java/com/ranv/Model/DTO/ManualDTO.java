@@ -20,6 +20,7 @@ public class ManualDTO{
     private String image;
     private String introduction;
     private String username;
+    private Long userId;
     private boolean published;
     private List<String> tagNames;
     private Long rating;

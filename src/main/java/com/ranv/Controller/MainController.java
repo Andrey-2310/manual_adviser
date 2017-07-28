@@ -82,6 +82,12 @@ public class MainController {
         return serviceUserExtendedDTO.convertToItemDTO(user);
     }
 
+    @RequestMapping("/manual/{id}")
+    public ManualDTO getManual(@PathVariable Long id) {
+        Manual manual = manualService.findOne(id);
+        return serviceManualDTO.convertToItemDTO(manual);
+    }
+
     @RequestMapping("/tags")
     public List<TagDTO> tags() {
         List<Tag> tags = tagService.findAll();
@@ -93,11 +99,13 @@ public class MainController {
     private Cloudinary cloudinary;
 
     @RequestMapping("/image")
-    public void image() {
+    public Map image() {
         try {
-            Map uploadResult = cloudinary.uploader().upload("C:\\Users\\Андрей\\Downloads\\Mario.jpg", com.cloudinary.utils.ObjectUtils.emptyMap());
+            Map uploadResult = cloudinary.uploader().upload("C:\\Users\\narey\\Pictures\\643t8nxpJfA.jpg", com.cloudinary.utils.ObjectUtils.emptyMap());
+            return uploadResult;
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
@@ -125,6 +133,11 @@ public class MainController {
         userService.updateUser(serviceUserExtendedDTO.convertFromItemDTO(userExtDTO));
     }
 
+    @RequestMapping(value = "/updatemanual", method = RequestMethod.POST)
+    public void updateManual(@RequestBody ManualDTO manualDTO) {
+        manualService.updateManual(serviceManualDTO.convertFromItemDTO(manualDTO));
+    }
+
     @RequestMapping(value = "/newinstruction", method = RequestMethod.POST)
     public Long newInstruction(@RequestBody ManualDTO manDTO) {
         Long id = manualService.saveManual(serviceManualDTO.convertFromItemDTO(manDTO));
@@ -142,6 +155,7 @@ public class MainController {
     public void setRating(@RequestBody RatingDTO ratingDTO) {
         ratingService.saveRating(serviceRatingDTO.convertFromItemDTO(ratingDTO));
     }
+
 
 
     @RequestMapping(value = "/popularManuals")

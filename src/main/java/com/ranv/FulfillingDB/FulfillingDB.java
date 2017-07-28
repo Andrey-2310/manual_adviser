@@ -30,7 +30,7 @@ public class FulfillingDB {
         // tagRepository.save(entities.getTags());
         //userRepository.save(entities.getUsers());
        // manualRepository.save(entities.getManuals());
-        manualRepository.save(entities.getRandomManual(1));
+        manualRepository.save(entities.getRandomManual(40));
         // roleRepository.save(entities.getRoles());
         //ratingRepository.save(new Rating(userRepository.findOne(1L), manualRepository.findOne(1L), 1L));
     }
