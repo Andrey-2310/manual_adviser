@@ -1,4 +1,4 @@
-package com.ranv.Service;
+package com.ranv.Service.ServiceModel;
 
 import com.ranv.Model.ModelDB.Manual;
 import com.ranv.Repository.ManualRepository;
@@ -25,4 +25,6 @@ public class ManualService {
     public Long saveManual(Manual manual) {
         return manualRepository.save(manual).getId();
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.ranv.Service;
+package com.ranv.Service.ServiceModel;
 
 import com.ranv.Model.ModelDB.Tag;
 import com.ranv.Repository.TagRepository;
