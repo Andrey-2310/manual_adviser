@@ -22,7 +22,7 @@ public class ManualDTO{
     private String username;
     private Long userId;
     private boolean published;
-    private List<String> tagNames;
+    private List<TagDTO> tags;
     private Long rating;
 
 

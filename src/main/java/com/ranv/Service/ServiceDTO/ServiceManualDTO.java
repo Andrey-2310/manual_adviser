@@ -22,11 +22,7 @@ public class ServiceManualDTO extends ServiceModelDTO<ManualDTO, Manual>{
         manualDTO.setUsername(manual.getUser().getUsername());
         manualDTO.setUserId(manual.getUser().getId());
         manualDTO.setRatingCustom(manual.getRatings());
-        List<String> tagNames = new ArrayList<>();
-        for (Tag tag : manual.getTags()) {
-            tagNames.add(tag.getName());
-        }
-        manualDTO.setTagNames(tagNames);
+        manualDTO.setTags(serviceTagDTO.convertItems(new ArrayList<>(manual.getTags())));
         return manualDTO;
     }
 
@@ -36,6 +32,9 @@ public class ServiceManualDTO extends ServiceModelDTO<ManualDTO, Manual>{
 
     @Autowired
     ManualService manualService;
+
+    @Autowired
+    private ServiceTagDTO serviceTagDTO;
 
     public List<ManualDTO> getPopularManuals() {
         List<Manual> manuals = manualService.findAll();

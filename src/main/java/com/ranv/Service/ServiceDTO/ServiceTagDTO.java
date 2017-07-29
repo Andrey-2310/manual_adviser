@@ -16,7 +16,8 @@ public class ServiceTagDTO extends ServiceModelDTO<TagDTO, Tag> {
     @Override
     protected TagDTO convertToItemDTO(Tag tag) {
         TagDTO tagDTO=new TagDTO();
-        tagDTO.setText(tag.getName());
+        tagDTO.setId(tag.getId());
+        tagDTO.setName(tag.getName());
         // Long weight = tag.getUsage();
         tagDTO.setWeightCustom((long) tag.getManuals().size(), usageToWeight);
 
