@@ -23,8 +23,8 @@ public class TagService {
     }
 
    public Long addTag(Tag tag){
-        Optional<Tag> newTag = Optional.of(tagRepository.findByName(tag.getName()));
-        Optional<Long> newLong= Optional.of(newTag.get().getId());
-        return newLong.orElse(tagRepository.save(tag).getId());
+        Optional<Tag> newTag = Optional.ofNullable(tagRepository.findByName(tag.getName()));
+        return newTag.map(Tag::getId).orElse(tagRepository.save(tag).getId());
+
     }
 }
