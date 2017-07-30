@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -22,9 +21,8 @@ public class TagService {
         return tagRepository.findByName(name);
     }
 
-   public Long addTag(Tag tag){
-        Optional<Tag> newTag = Optional.ofNullable(tagRepository.findByName(tag.getName()));
-        return newTag.map(Tag::getId).orElse(tagRepository.save(tag).getId());
-
+    public Long addTag(Tag tag) {
+        Tag newTag = tagRepository.findByName(tag.getName());
+        return newTag != null ? newTag.getId() : tagRepository.save(tag).getId();
     }
 }
