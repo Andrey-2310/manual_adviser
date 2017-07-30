@@ -163,7 +163,7 @@ public class MainController {
 
     @RequestMapping(value = "/addtag", method = RequestMethod.POST)
     public Long newInstruction(@RequestBody TagDTO tagDTO) {
-        Long id = tagService.addTag(serviceTagDTO.convertFromItemDTO(tagDTO));
-        return id;
+        return tagService.addTag(serviceTagDTO.convertFromItemDTO(tagDTO));
     }
+
 }
