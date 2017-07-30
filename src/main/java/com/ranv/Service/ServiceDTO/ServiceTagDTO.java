@@ -15,7 +15,7 @@ public class ServiceTagDTO extends ServiceModelDTO<TagDTO, Tag> {
 
     @Override
     protected TagDTO convertToItemDTO(Tag tag) {
-        TagDTO tagDTO=new TagDTO();
+        TagDTO tagDTO = new TagDTO();
         tagDTO.setId(tag.getId());
         tagDTO.setName(tag.getName());
         // Long weight = tag.getUsage();
@@ -25,6 +25,7 @@ public class ServiceTagDTO extends ServiceModelDTO<TagDTO, Tag> {
         return tagDTO;
     }
 
+    @Override
     public Tag convertFromItemDTO(TagDTO tagDTO) {
         return modelMapper.map(tagDTO, Tag.class);
     }

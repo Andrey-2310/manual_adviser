@@ -21,7 +21,8 @@ public class ServiceUserExtendedDTO extends ServiceModelDTO<UserExtendedDTO, Use
         return userExtendedDTO;
     }
 
-    public User convertFromItemDTO(UserExtendedDTO userExtendedDTO){
+    @Override
+    public User convertFromItemDTO(UserExtendedDTO userExtendedDTO) {
         return modelMapper.map(userExtendedDTO, User.class);
     }
 }

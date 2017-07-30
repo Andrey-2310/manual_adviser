@@ -23,8 +23,9 @@ public class ServiceRatingDTO extends ServiceModelDTO<RatingDTO, Rating> {
     @Autowired
     ManualRepository manualRepository;
 
-    public Rating convertFromItemDTO(RatingDTO ratingDTO){
-        Rating rating=modelMapper.map(ratingDTO, Rating.class);
+    @Override
+    public Rating convertFromItemDTO(RatingDTO ratingDTO) {
+        Rating rating = modelMapper.map(ratingDTO, Rating.class);
         rating.setUser(userRepository.findOne(ratingDTO.getUser()));
         rating.setManual(manualRepository.findOne(ratingDTO.getManual()));
         return rating;

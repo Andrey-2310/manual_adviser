@@ -21,9 +21,13 @@ public class Step {
     @Column(name = "step_id")
     private Long id;
 
+    @Column(name="step_name")
+    private String name;
+
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="manual_id")
     private Manual manual;
+
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "step")
     private Set<Unit> units;

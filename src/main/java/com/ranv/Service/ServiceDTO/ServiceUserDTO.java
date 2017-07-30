@@ -13,4 +13,9 @@ public class ServiceUserDTO extends ServiceModelDTO<UserDTO, User> {
         userDTO.setManualAmount((long) user.getManuals().size());
         return userDTO;
     }
+
+    @Override
+    protected User convertFromItemDTO(UserDTO item) {
+        return null;
+    }
 }
