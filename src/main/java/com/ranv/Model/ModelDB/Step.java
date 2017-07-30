@@ -24,10 +24,12 @@ public class Step {
     @Column(name="step_name")
     private String name;
 
+    @Column(name="step_order")
+    private int order;
+
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="manual_id")
     private Manual manual;
-
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "step")
     private Set<Unit> units;

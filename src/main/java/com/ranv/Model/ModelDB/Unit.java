@@ -24,7 +24,7 @@ public class Unit {
     @JoinColumn(name = "step_id")
     private Step step;
 
-    @Column(name="step_order")
+    @Column(name="unit_order")
     private int order;
 
     @Column(name = "unit_type")

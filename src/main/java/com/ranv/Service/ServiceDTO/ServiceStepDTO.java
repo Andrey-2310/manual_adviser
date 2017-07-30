@@ -16,7 +16,7 @@ public class ServiceStepDTO extends ServiceModelDTO<StepDTO, Step> {
     protected StepDTO convertToItemDTO(Step step) {
         StepDTO stepDTO = modelMapper.map(step, StepDTO.class);
         stepDTO.setManualId(step.getManual().getId());
-        stepDTO.setUnitDTOS(serviceUnitDTO.convertItems(new ArrayList<>(step.getUnits())));
+        stepDTO.setUnits(serviceUnitDTO.convertItems(new ArrayList<>(step.getUnits())));
         return stepDTO;
     }
     @Autowired
@@ -26,7 +26,7 @@ public class ServiceStepDTO extends ServiceModelDTO<StepDTO, Step> {
 
     public Step convertFromItemDTO(StepDTO stepDTO){
         Step step= modelMapper.map(stepDTO, Step.class);
-        step.setUnits(new HashSet<>(serviceUnitDTO.convertItemsList(stepDTO.getUnitDTOS())));
+        step.setUnits(new HashSet<>(serviceUnitDTO.convertItemsList(stepDTO.getUnits())));
         step.setManual(manualService.findOne(stepDTO.getManualId()));
         //TODO: add comments to step
         return step;

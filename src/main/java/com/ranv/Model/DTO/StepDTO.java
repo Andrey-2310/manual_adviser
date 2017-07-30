@@ -13,7 +13,9 @@ public class StepDTO {
     //TODO: add comments
     private Long id;
     private Long manualId;
-    private List<UnitDTO> unitDTOS;
+    private String name;
+    private int order;
+    private List<UnitDTO> units;
 
 
 }

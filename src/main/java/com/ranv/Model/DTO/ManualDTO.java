@@ -23,6 +23,7 @@ public class ManualDTO{
     private Long userId;
     private boolean published;
     private List<TagDTO> tags;
+    private List<StepDTO> steps;
     private Long rating;
 
 

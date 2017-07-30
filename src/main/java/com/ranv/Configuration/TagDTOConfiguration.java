@@ -17,7 +17,7 @@ public class TagDTOConfiguration {
 
         sortedMap.put(100L, 3);
         sortedMap.put(10L, 2);
-        sortedMap.put(0L, 1);
+        sortedMap.put(0L, 2);
         return sortedMap;
     }
 
