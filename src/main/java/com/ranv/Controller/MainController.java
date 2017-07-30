@@ -156,11 +156,14 @@ public class MainController {
         ratingService.saveRating(serviceRatingDTO.convertFromItemDTO(ratingDTO));
     }
 
-
-
     @RequestMapping(value = "/popularManuals")
     public List<ManualDTO> getPopularManuals() {
         return serviceManualDTO.getPopularManuals();
     }
 
+    @RequestMapping(value = "/addtag", method = RequestMethod.POST)
+    public Long newInstruction(@RequestBody TagDTO tagDTO) {
+        Long id = tagService.addTag(serviceTagDTO.convertFromItemDTO(tagDTO));
+        return id;
+    }
 }

@@ -25,4 +25,7 @@ public class ServiceTagDTO extends ServiceModelDTO<TagDTO, Tag> {
         return tagDTO;
     }
 
+    public Tag convertFromItemDTO(TagDTO tagDTO) {
+        return modelMapper.map(tagDTO, Tag.class);
+    }
 }

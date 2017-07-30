@@ -17,4 +17,8 @@ public class TagService {
         return tagRepository.findAll();
     }
     public Tag findByName(String name){return tagRepository.findByName(name);}
+
+    public Long addTag(Tag tag) {
+
+    }
 }
