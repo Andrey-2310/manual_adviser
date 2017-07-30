@@ -22,9 +22,9 @@ public class TagService {
         return tagRepository.findByName(name);
     }
 
-   // public Long addTag(Tag tag) {
    public Long addTag(Tag tag){
-        Optional<Long> newLong = Optional.of(tag.getId());
+        Optional<Tag> newTag = Optional.of(tagRepository.findByName(tag.getName()));
+        Optional<Long> newLong= Optional.of(newTag.get().getId());
         return newLong.orElse(tagRepository.save(tag).getId());
     }
 }
