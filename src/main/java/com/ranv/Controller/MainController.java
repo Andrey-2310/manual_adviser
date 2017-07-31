@@ -193,6 +193,12 @@ public class MainController {
         stepService.delete(id);
     }
 
+    @RequestMapping("/deleteunit/{id}")
+    public void deleteUnit(@PathVariable Long id) {
+        unitService.delete(id);
+    }
+
+
     @RequestMapping(value = "/addUnit", method = RequestMethod.POST)
     public void addUnit(@RequestBody UnitDTO unitDTO) {
         unitService.saveUnit(serviceUnitDTO.convertFromItemDTO(unitDTO));

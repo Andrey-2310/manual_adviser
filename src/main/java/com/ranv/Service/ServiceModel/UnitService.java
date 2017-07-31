@@ -14,5 +14,9 @@ public class UnitService {
 
     public void updateUnit(Unit unit){ unitRepository.save(unit);}
 
+    public void delete(Long id) {
+        unitRepository.delete(id);
+    }
+
     public Unit findById(Long id){return unitRepository.findOne(id);}
 }
