@@ -24,7 +24,9 @@ public class StepService {
 
     public void updateStep(Step step) {
         stepRepository.save(step);
-        for (Unit unit : step.getUnits())
-            unitService.updateUnit(unit);
+        if(step.getUnits()!=null) {
+            for (Unit unit : step.getUnits())
+                unitService.updateUnit(unit);
+        }
     }
 }

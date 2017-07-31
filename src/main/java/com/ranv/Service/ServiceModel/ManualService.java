@@ -14,7 +14,8 @@ public class ManualService {
     @Autowired
     private ManualRepository manualRepository;
 
-    public List<Manual> findAll(){
+
+    public List<Manual> findAll() {
         return manualRepository.findAll();
     }
 
@@ -22,22 +23,29 @@ public class ManualService {
         return manualRepository.findOne(id);
     }
 
-    public List<Manual> findPublished(){
+    public List<Manual> findPublished() {
         return manualRepository.findByPublished(true);
     }
 
+    @Autowired
+    private MedalService medalService;
+
 
     public Long saveManual(Manual manual) {
+        if (manual.getUser().getManuals().size() == 0)
+            medalService.setMedalToUser(manual.getUser().getId(), "First Manual");
         return manualRepository.save(manual).getId();
     }
 
     @Autowired
     private StepService stepService;
 
-    public void updateManual(Manual manual){
+    public void updateManual(Manual manual) {
         manualRepository.save(manual);
-        for(Step step: manual.getSteps())
-            stepService.updateStep(step);
+        if(manual.getSteps()!=null) {
+            for (Step step : manual.getSteps())
+                stepService.updateStep(step);
+        }
     }
 
 }

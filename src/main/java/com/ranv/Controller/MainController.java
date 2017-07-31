@@ -71,7 +71,7 @@ public class MainController {
 
     @RequestMapping("/users/{id}")
     public UserExtendedDTO extUsers(@PathVariable Long id) {
-        User user = userService.findOne(id);
+        User user = userService.findById(id);
         return serviceUserExtendedDTO.convertToItemDTO(user);
     }
 

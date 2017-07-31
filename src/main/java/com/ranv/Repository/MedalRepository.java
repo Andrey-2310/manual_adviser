@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MedalRepository extends JpaRepository<Medal, Long> {
+    Medal findByName(String name);
 }

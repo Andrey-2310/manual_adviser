@@ -16,13 +16,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findOne(Long id) {
-        return userRepository.findOne(id);
-    }
-
     public User findById(Long id){ return  userRepository.findOne(id);}
 
     public void updateUser(User user){
         userRepository.save(user);
     }
+
 }
