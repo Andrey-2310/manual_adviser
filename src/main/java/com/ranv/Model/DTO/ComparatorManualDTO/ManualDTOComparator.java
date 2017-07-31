@@ -4,9 +4,7 @@ import com.ranv.Model.DTO.ManualDTO;
 
 import java.util.Comparator;
 
-/**
- * Created by Андрей on 28.07.2017.
- */
+
 public class ManualDTOComparator implements Comparator<ManualDTO> {
 
     @Override

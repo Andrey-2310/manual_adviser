@@ -21,7 +21,7 @@ public class TagService {
         return tagRepository.findByName(name);
     }
 
-    public Long addTag(Tag tag) {
+    public Long saveAndGetId(Tag tag) {
         Tag newTag = tagRepository.findByName(tag.getName());
         return newTag != null ? newTag.getId() : tagRepository.save(tag).getId();
     }

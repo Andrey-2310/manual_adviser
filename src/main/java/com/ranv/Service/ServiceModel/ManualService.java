@@ -1,6 +1,7 @@
 package com.ranv.Service.ServiceModel;
 
 import com.ranv.Model.ModelDB.Manual;
+import com.ranv.Model.ModelDB.Step;
 import com.ranv.Repository.ManualRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,6 @@ import java.util.List;
 
 
 @Service
-
 public class ManualService {
     @Autowired
     private ManualRepository manualRepository;
@@ -26,12 +26,18 @@ public class ManualService {
         return manualRepository.findByPublished(true);
     }
 
+
     public Long saveManual(Manual manual) {
         return manualRepository.save(manual).getId();
     }
 
+    @Autowired
+    private StepService stepService;
+
     public void updateManual(Manual manual){
         manualRepository.save(manual);
+        for(Step step: manual.getSteps())
+            stepService.updateStep(step);
     }
 
 }

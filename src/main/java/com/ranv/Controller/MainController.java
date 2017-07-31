@@ -3,22 +3,15 @@ package com.ranv.Controller;
 import com.cloudinary.Cloudinary;
 import com.ranv.FulfillingDB.FulfillingDB;
 import com.ranv.Model.DTO.*;
-import com.ranv.Model.ModelDB.Manual;
-import com.ranv.Model.ModelDB.Tag;
-import com.ranv.Model.ModelDB.User;
+import com.ranv.Model.ModelDB.*;
 import com.ranv.Repository.FulltextSearch.HibernateSearch;
 import com.ranv.Service.ServiceDTO.*;
-import com.ranv.Service.ServiceModel.ManualService;
-import com.ranv.Service.ServiceModel.RatingService;
-import com.ranv.Service.ServiceModel.TagService;
-import com.ranv.Service.ServiceModel.UserService;
+import com.ranv.Service.ServiceModel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @RestController
@@ -163,7 +156,29 @@ public class MainController {
 
     @RequestMapping(value = "/addtag", method = RequestMethod.POST)
     public Long newInstruction(@RequestBody TagDTO tagDTO) {
-        return tagService.addTag(serviceTagDTO.convertFromItemDTO(tagDTO));
+        return tagService.saveAndGetId(serviceTagDTO.convertFromItemDTO(tagDTO));
     }
+
+//    @RequestMapping(value = "/addtag", method = RequestMethod.GET)
+//    public Long newInstruction() {
+//        Long tagId = tagService.saveAndGetId(new Tag("Poeben'"));
+//        return tagId;
+//    }
+
+    @Autowired
+    private StepService stepService;
+
+    @Autowired
+    private ServiceStepDTO serviceStepDTO;
+
+    @Autowired
+    UnitService unitService;
+
+    @RequestMapping(value = "/addStep", method = RequestMethod.POST)
+    public void addStep(@RequestBody StepDTO stepDTO) {
+        stepService.saveStep(serviceStepDTO.convertFromItemDTO(stepDTO));
+    }
+
+
 
 }
