@@ -12,7 +12,7 @@ public class UnitDTO {
     private Long id;
     private Long stepId;
     private int order;
-    private String unitType;
+    private String type;
     private String content;
 
 //    public UnitDTO( Long stepId, int order, UnitType unitType, String content) {

@@ -81,6 +81,12 @@ public class MainController {
         return serviceManualDTO.convertToItemDTO(manual);
     }
 
+    @RequestMapping("/step/{id}")
+    public StepDTO getStep(@PathVariable Long id) {
+        Step step = stepService.findById(id);
+        return serviceStepDTO.convertToItemDTO(step);
+    }
+
     @RequestMapping("/tags")
     public List<TagDTO> tags() {
         List<Tag> tags = tagService.findAll();
@@ -172,13 +178,24 @@ public class MainController {
     private ServiceStepDTO serviceStepDTO;
 
     @Autowired
+    private ServiceUnitDTO serviceUnitDTO;
+
+    @Autowired
     UnitService unitService;
 
     @RequestMapping(value = "/addStep", method = RequestMethod.POST)
-    public void addStep(@RequestBody StepDTO stepDTO) {
-        stepService.saveStep(serviceStepDTO.convertFromItemDTO(stepDTO));
+    public Long addStep(@RequestBody StepDTO stepDTO) {
+        return stepService.saveStep(serviceStepDTO.convertFromItemDTO(stepDTO));
     }
 
+    @RequestMapping("/deletestep/{id}")
+    public void deleteStep(@PathVariable Long id) {
+        stepService.delete(id);
+    }
 
+    @RequestMapping(value = "/addUnit", method = RequestMethod.POST)
+    public void addUnit(@RequestBody UnitDTO unitDTO) {
+        unitService.saveUnit(serviceUnitDTO.convertFromItemDTO(unitDTO));
+    }
 
 }

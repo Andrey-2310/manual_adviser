@@ -17,7 +17,7 @@ public class ServiceStepDTO extends ServiceModelDTO<StepDTO, Step> {
     ServiceUnitDTO serviceUnitDTO;
 
     @Override
-    protected StepDTO convertToItemDTO(Step step) {
+    public StepDTO convertToItemDTO(Step step) {
         StepDTO stepDTO = modelMapper.map(step, StepDTO.class);
         stepDTO.setManualId(step.getManual().getId());
         stepDTO.setUnits(serviceUnitDTO.convertItems(new ArrayList<>(step.getUnits())));

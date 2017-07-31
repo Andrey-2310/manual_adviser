@@ -19,14 +19,19 @@ public class StepService {
         return stepRepository.save(step).getId();
     }
 
+    public void delete(Long id) {
+        stepRepository.delete(id);
+    }
+
     @Autowired
     private UnitService unitService;
 
     public void updateStep(Step step) {
         stepRepository.save(step);
-        if(step.getUnits()!=null) {
-            for (Unit unit : step.getUnits())
-                unitService.updateUnit(unit);
+        if (step.getUnits() == null) {
+            return;
         }
+        for (Unit unit : step.getUnits())
+            unitService.updateUnit(unit);
     }
 }
