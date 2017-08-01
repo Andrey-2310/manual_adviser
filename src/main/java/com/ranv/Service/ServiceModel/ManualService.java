@@ -56,4 +56,7 @@ public class ManualService {
         manualRepository.delete(manualId);
     }
 
+    public List<Manual> findNextManuals(Long id){
+        return manualRepository.findTop10ByIdGreaterThanOrderByDate(id);
+    }
 }

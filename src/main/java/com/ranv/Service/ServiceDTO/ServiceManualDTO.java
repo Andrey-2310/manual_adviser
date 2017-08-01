@@ -1,6 +1,6 @@
 package com.ranv.Service.ServiceDTO;
 
-import com.ranv.Model.DTO.ComparatorManualDTO.ManualDTOComparator;
+import com.ranv.Model.DTO.Comparator.ComparatorManualDTO.RatingComparator;
 import com.ranv.Model.DTO.ManualDTO;
 import com.ranv.Model.ModelDB.Manual;
 import com.ranv.Service.ServiceModel.ManualService;
@@ -43,7 +43,7 @@ public class ServiceManualDTO extends ServiceModelDTO<ManualDTO, Manual> {
     public List<ManualDTO> getPopularManuals() {
         List<Manual> manuals = manualService.findAll();
         List<ManualDTO> manualDTOS = convertItems(manuals);
-        manualDTOS.sort(new ManualDTOComparator());
+        manualDTOS.sort(new RatingComparator());
         int sizeOfPopularList = 5;
         return manualDTOS.subList(0, min(manualDTOS.size(), sizeOfPopularList - 1));
     }

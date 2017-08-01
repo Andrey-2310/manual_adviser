@@ -21,9 +21,6 @@ public class UnitService {
         unitRepository.save(unit);
     }
 
-    public void delete(Long id) {
-        unitRepository.delete(id);
-    }
 
     public Unit findById(Long id) {
         return unitRepository.findOne(id);
@@ -34,7 +31,13 @@ public class UnitService {
     }
 
     @Transactional
+    public void delete(Long id) {
+        unitRepository.delete(id);
+    }
+
+    @Transactional
     public void deleteUnitsByStepId(Long stepId) {
         unitRepository.deleteByStepId(stepId);
     }
+
 }

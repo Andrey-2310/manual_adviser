@@ -83,8 +83,9 @@ public class MainController {
 
     @RequestMapping("/step/{id}")
     public StepDTO getStep(@PathVariable Long id) {
-        Step step = stepService.findById(id);
-        return serviceStepDTO.convertToItemDTO(step);
+        StepDTO stepDTO = serviceStepDTO.convertToItemDTO(stepService.findById(id));
+        stepDTO.setUnits(serviceUnitDTO.sortUnitsByOrder(new ArrayList<>(stepDTO.getUnits())));
+        return stepDTO;
     }
 
     @RequestMapping("/tags")
@@ -157,6 +158,7 @@ public class MainController {
 
     @RequestMapping(value = "/popularManuals")
     public List<ManualDTO> getPopularManuals() {
+
         return serviceManualDTO.getPopularManuals();
     }
 
@@ -164,7 +166,6 @@ public class MainController {
     public Long newInstruction(@RequestBody TagDTO tagDTO) {
         return tagService.saveAndGetId(serviceTagDTO.convertFromItemDTO(tagDTO));
     }
-
 
 
     @Autowired
@@ -199,9 +200,10 @@ public class MainController {
     public void addUnit(@RequestBody UnitDTO unitDTO) {
         unitService.saveUnit(serviceUnitDTO.convertFromItemDTO(unitDTO));
     }
-    @RequestMapping("/findSteps")
-    public void findSteps() {
-        stepService.deleteStep(7L);
+
+    @RequestMapping("/findNextManuals")
+    public List<ManualDTO> findSteps() {
+        return serviceManualDTO.convertItems(manualService.findNextManuals(1L));
     }
 
 }
