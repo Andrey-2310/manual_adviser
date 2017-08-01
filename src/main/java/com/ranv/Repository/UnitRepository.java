@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface UnitRepository extends JpaRepository<Unit, Long> {
-     List<Unit> findByStepId(int stepId);
+   List<Unit> findByStepIdOrderByOrderAsc(Long stepId);
+   void deleteByStepId(Long stepId);
+
 }

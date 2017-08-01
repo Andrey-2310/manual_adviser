@@ -165,11 +165,7 @@ public class MainController {
         return tagService.saveAndGetId(serviceTagDTO.convertFromItemDTO(tagDTO));
     }
 
-//    @RequestMapping(value = "/addtag", method = RequestMethod.GET)
-//    public Long newInstruction() {
-//        Long tagId = tagService.saveAndGetId(new Tag("Poeben'"));
-//        return tagId;
-//    }
+
 
     @Autowired
     private StepService stepService;
@@ -190,7 +186,7 @@ public class MainController {
 
     @RequestMapping("/deletestep/{id}")
     public void deleteStep(@PathVariable Long id) {
-        stepService.delete(id);
+        stepService.deleteStep(id);
     }
 
     @RequestMapping("/deleteunit/{id}")
@@ -202,6 +198,10 @@ public class MainController {
     @RequestMapping(value = "/addUnit", method = RequestMethod.POST)
     public void addUnit(@RequestBody UnitDTO unitDTO) {
         unitService.saveUnit(serviceUnitDTO.convertFromItemDTO(unitDTO));
+    }
+    @RequestMapping("/findSteps")
+    public void findSteps() {
+        stepService.deleteStep(7L);
     }
 
 }

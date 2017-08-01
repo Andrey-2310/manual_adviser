@@ -20,7 +20,7 @@ public class Unit {
     @Column(name = "unit_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "step_id")
     private Step step;
 

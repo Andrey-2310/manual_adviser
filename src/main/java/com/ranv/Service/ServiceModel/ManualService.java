@@ -5,6 +5,7 @@ import com.ranv.Model.ModelDB.Step;
 import com.ranv.Repository.ManualRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -40,12 +41,19 @@ public class ManualService {
     @Autowired
     private StepService stepService;
 
+
     public void updateManual(Manual manual) {
         manualRepository.save(manual);
         if(manual.getSteps()!=null) {
             for (Step step : manual.getSteps())
                 stepService.updateStep(step);
         }
+    }
+
+    @Transactional
+    public void deleteManual(Long manualId){
+        stepService.deleteStepsByManualId(manualId);
+        manualRepository.delete(manualId);
     }
 
 }

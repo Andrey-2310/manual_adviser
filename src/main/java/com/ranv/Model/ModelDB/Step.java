@@ -24,11 +24,10 @@ public class Step {
     @Column(name="step_name")
     private String name;
 
-
     @Column(name="step_order")
     private int order;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="manual_id")
     private Manual manual;
 
