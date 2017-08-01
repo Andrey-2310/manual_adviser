@@ -138,6 +138,12 @@ public class MainController {
         manualService.updateManual(serviceManualDTO.convertFromItemDTO(manualDTO));
     }
 
+    @RequestMapping(value = "/updatestep", method = RequestMethod.POST)
+    public void updateStep(@RequestBody StepDTO stepDTO) {
+        stepService.updateStep(serviceStepDTO.convertFromItemDTO(stepDTO));
+    }
+
+
     @RequestMapping(value = "/newinstruction", method = RequestMethod.POST)
     public Long newInstruction(@RequestBody ManualDTO manDTO) {
         Long id = manualService.saveManual(serviceManualDTO.convertFromItemDTO(manDTO));
@@ -195,6 +201,10 @@ public class MainController {
         unitService.delete(id);
     }
 
+    @RequestMapping("/deletemanual/{id}")
+    public void deleteManual(@PathVariable Long id) {
+        manualService.deleteManual(id);
+    }
 
     @RequestMapping(value = "/addUnit", method = RequestMethod.POST)
     public void addUnit(@RequestBody UnitDTO unitDTO) {
