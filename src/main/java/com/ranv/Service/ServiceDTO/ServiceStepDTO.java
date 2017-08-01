@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class ServiceStepDTO extends ServiceModelDTO<StepDTO, Step> {
@@ -36,5 +37,10 @@ public class ServiceStepDTO extends ServiceModelDTO<StepDTO, Step> {
         return step;
     }
 
+    public List<StepDTO> sortStepsByOrder(List<StepDTO> steps){
+        steps.sort((a, b) -> a.getOrder() > b.getOrder() ?
+                -1 : a.getOrder() == b.getOrder() ? 0 : 1);
+        return steps;
+    }
 
 }

@@ -5,7 +5,6 @@ import com.ranv.Model.ModelDB.Unit;
 import com.ranv.Model.ModelDB.UnitType;
 import com.ranv.Service.ServiceModel.StepService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.OrderComparator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +30,8 @@ public class ServiceUnitDTO extends ServiceModelDTO<UnitDTO, Unit> {
     }
 
     public List<UnitDTO> sortUnitsByOrder(List<UnitDTO> units){
-        units.sort(new OrderComparator());
+        units.sort((a, b) -> a.getOrder() > b.getOrder() ?
+                -1 : a.getOrder() == b.getOrder() ? 0 : 1);
         return units;
     }
 }

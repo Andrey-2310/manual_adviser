@@ -57,6 +57,6 @@ public class ManualService {
     }
 
     public List<Manual> findNextManuals(Long id){
-        return manualRepository.findTop10ByIdGreaterThanOrderByDate(id);
+        return manualRepository.findTop10ByIdGreaterThanOrderById(id);
     }
 }

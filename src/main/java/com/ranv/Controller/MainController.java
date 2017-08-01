@@ -203,7 +203,7 @@ public class MainController {
 
     @RequestMapping("/findNextManuals")
     public List<ManualDTO> findSteps() {
-        return serviceManualDTO.convertItems(manualService.findNextManuals(1L));
+        return serviceManualDTO.convertItems(manualService.findNextManuals(9L));
     }
 
 }

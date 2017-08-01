@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface ManualRepository extends JpaRepository<Manual, Long> {
     List<Manual> findByPublished(Boolean published);
-    List<Manual> findTop10ByIdGreaterThanOrderByDate(Long id);
+    List<Manual> findTop10ByIdGreaterThanOrderById(Long id);
 }
