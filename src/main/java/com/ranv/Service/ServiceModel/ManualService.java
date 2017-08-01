@@ -33,8 +33,8 @@ public class ManualService {
 
 
     public Long saveManual(Manual manual) {
-        if (manual.getUser().getManuals().size() == 0)
-            medalService.setMedalToUser(manual.getUser().getId(), "First Manual");
+//        if (manual.getUser().getManuals().size() == 0)
+//            medalService.setMedalToUser(manual.getUser().getId(), "First Manual");
         return manualRepository.save(manual).getId();
     }
 
