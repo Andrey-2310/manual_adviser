@@ -7,11 +7,14 @@ import com.ranv.Repository.FulltextSearch.HibernateSearch;
 import com.ranv.Service.EventsPublisher.Publisher;
 import com.ranv.Service.ServiceDTO.ServiceManualDTO;
 import com.ranv.Service.ServiceModel.ManualService;
+import com.ranv.Service.ServiceModel.StepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 @RestController
 @CrossOrigin
@@ -21,13 +24,15 @@ public class ManualController {
     private final ManualService manualService;
     private final HibernateSearch hibernateSearch;
     private final Publisher publisher;
+    private final StepService stepService;
 
     @Autowired
     public ManualController(ServiceManualDTO serviceManualDTO, ManualService manualService,
-                            HibernateSearch hibernateSearch, Publisher publisher) {
+                            HibernateSearch hibernateSearch, StepService stepService, Publisher publisher) {
         this.manualService = manualService;
         this.serviceManualDTO = serviceManualDTO;
         this.hibernateSearch = hibernateSearch;
+        this.stepService = stepService;
         this.publisher = publisher;
     }
 
@@ -35,6 +40,7 @@ public class ManualController {
     @RequestMapping("/manual/{id}")
     public ManualDTO getManual(@PathVariable Long id) {
         Manual manual = manualService.findOne(id);
+        manual.setSteps(stepService.findStepsByManualId(id));
         return serviceManualDTO.convertToItemDTO(manual);
     }
 

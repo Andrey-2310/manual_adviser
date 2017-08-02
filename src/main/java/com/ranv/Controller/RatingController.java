@@ -1,7 +1,9 @@
 package com.ranv.Controller;
 
+import com.ranv.Configuration.Achievements.Events.RatingEvent;
 import com.ranv.Model.DTO.RatingDTO;
 import com.ranv.Model.ModelDB.Rating;
+import com.ranv.Service.EventsPublisher.Publisher;
 import com.ranv.Service.ServiceDTO.ServiceRatingDTO;
 import com.ranv.Service.ServiceModel.ManualService;
 import com.ranv.Service.ServiceModel.RatingService;
@@ -15,13 +17,15 @@ public class RatingController {
     private final ServiceRatingDTO serviceRatingDTO;
     private final ManualService manualService;
     private final RatingService ratingService;
+    private final Publisher publisher;
 
     @Autowired
     public RatingController(ServiceRatingDTO serviceRatingDTO, ManualService manualService,
-                            RatingService ratingService){
+                            RatingService ratingService, Publisher publisher){
         this.serviceRatingDTO=serviceRatingDTO;
         this.manualService=manualService;
         this.ratingService=ratingService;
+        this.publisher = publisher;
     }
 
     @RequestMapping(value = "/setRating", method = RequestMethod.POST)
@@ -30,6 +34,6 @@ public class RatingController {
         rating.getManual().setRating(rating.getManual().getRating() + rating.getValue());
         manualService.saveManual(rating.getManual());
         ratingService.saveRating(rating);
-
+        publisher.publish(new RatingEvent(this, rating.getManual()));
     }
 }

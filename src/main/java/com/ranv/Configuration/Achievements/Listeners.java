@@ -1,6 +1,7 @@
 package com.ranv.Configuration.Achievements;
 
 import com.ranv.Configuration.Achievements.Events.CreateManualEvent;
+import com.ranv.Configuration.Achievements.Events.RatingEvent;
 import com.ranv.Service.ServiceModel.MedalService;
 import com.ranv.Service.ServiceModel.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,25 @@ public class Listeners {
         int manualsCount = userService.findById(createManualEvent.getUserId()).getManuals().size();
         switch (manualsCount) {
             case 1: {
-                medalService.setMedalToUser(createManualEvent.getUserId(), "Педик");
+                medalService.setMedalToUser(createManualEvent.getUserId(), "First manual");
                 break;
             }
-            case 5: {
-                System.out.println("Fifth manual. UserId:" + createManualEvent.getUserId());
+            case 10: {
+                medalService.setMedalToUser(createManualEvent.getUserId(), "Tenth manual");
                 break;
+            }
+        }
+    }
+
+    @EventListener
+    public void handleRatingEvent(RatingEvent ratingEvent) {
+        switch (ratingEvent.getManual().getRating()) {
+            case -1: {
+                medalService.setMedalToUser(ratingEvent.getManual().getUser().getId(), "Loh");
+                break;
+            }
+            case 10: {
+                medalService.setMedalToUser(ratingEvent.getManual().getUser().getId(), "Tenth like");
             }
         }
     }

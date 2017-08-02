@@ -7,6 +7,7 @@ import com.ranv.Service.ServiceModel.StepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -30,8 +31,7 @@ public class ServiceUnitDTO extends ServiceModelDTO<UnitDTO, Unit> {
     }
 
     public List<UnitDTO> sortUnitsByOrder(List<UnitDTO> units){
-        units.sort((a, b) -> a.getOrder() > b.getOrder() ?
-                -1 : a.getOrder() == b.getOrder() ? 0 : 1);
+        units.sort(Comparator.comparingInt(UnitDTO::getOrder));
         return units;
     }
 }

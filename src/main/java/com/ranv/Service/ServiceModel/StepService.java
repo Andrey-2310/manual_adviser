@@ -18,7 +18,7 @@ public class StepService {
         return stepRepository.findOne(id);
     }
 
-    public List<Step> findStepsByManualId(Long id){
+      public List<Step> findStepsByManualId(Long id){
         return stepRepository.findByManualIdOrderByOrderAsc(id);
     }
 
