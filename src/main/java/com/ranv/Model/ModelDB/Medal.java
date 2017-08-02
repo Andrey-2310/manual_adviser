@@ -32,7 +32,7 @@ public class Medal {
 
     @NotNull
     @Column(name = "medal_image")
-    private byte[] image;
+    private String image;
 
     @ManyToMany(mappedBy = "medals")
     private Set<User> users;

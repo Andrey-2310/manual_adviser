@@ -1,8 +1,10 @@
 package com.ranv.Controller;
 
+import com.ranv.Configuration.Achievements.Events.CreateManualEvent;
 import com.ranv.Model.DTO.ManualDTO;
 import com.ranv.Model.ModelDB.Manual;
 import com.ranv.Repository.FulltextSearch.HibernateSearch;
+import com.ranv.Service.EventsPublisher.Publisher;
 import com.ranv.Service.ServiceDTO.ServiceManualDTO;
 import com.ranv.Service.ServiceModel.ManualService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +20,15 @@ public class ManualController {
     private final ServiceManualDTO serviceManualDTO;
     private final ManualService manualService;
     private final HibernateSearch hibernateSearch;
+    private final Publisher publisher;
 
     @Autowired
-    public ManualController(ServiceManualDTO serviceManualDTO, ManualService manualService, HibernateSearch hibernateSearch) {
+    public ManualController(ServiceManualDTO serviceManualDTO, ManualService manualService,
+                            HibernateSearch hibernateSearch, Publisher publisher) {
         this.manualService = manualService;
         this.serviceManualDTO = serviceManualDTO;
         this.hibernateSearch = hibernateSearch;
+        this.publisher = publisher;
     }
 
 
@@ -68,7 +73,7 @@ public class ManualController {
     @RequestMapping(value = "/newinstruction", method = RequestMethod.POST)
     public Long newInstruction(@RequestBody ManualDTO manDTO) {
         Long id = manualService.saveManual(serviceManualDTO.convertFromItemDTO(manDTO));
-        System.out.println(id);
+        publisher.publish(new CreateManualEvent(this, manDTO.getUserId()));
         return id;
     }
 
