@@ -9,12 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static java.lang.Math.min;
+
 
 @Service
 public class ManualService {
-    @Autowired
-    private ManualRepository manualRepository;
 
+    private final ManualRepository manualRepository;
+
+
+    @Autowired
+    public ManualService(ManualRepository manualRepository){
+        this.manualRepository=manualRepository;
+    }
 
     public List<Manual> findAll() {
         return manualRepository.findAll();
@@ -22,10 +29,6 @@ public class ManualService {
 
     public Manual findOne(Long id) {
         return manualRepository.findOne(id);
-    }
-
-    public List<Manual> findPublished() {
-        return manualRepository.findByPublished(true);
     }
 
     @Autowired
@@ -44,19 +47,38 @@ public class ManualService {
 
     public void updateManual(Manual manual) {
         manualRepository.save(manual);
-        if(manual.getSteps()!=null) {
+        if (manual.getSteps() != null) {
             for (Step step : manual.getSteps())
                 stepService.updateStep(step);
         }
     }
 
     @Transactional
-    public void deleteManual(Long manualId){
+    public void deleteManual(Long manualId) {
         stepService.deleteStepsByManualId(manualId);
         manualRepository.delete(manualId);
     }
 
-    public List<Manual> findNextManuals(Long id){
-        return manualRepository.findTop10ByIdGreaterThanOrderById(id);
+
+
+    public List<Manual> findPopularManuals(){
+       return manualRepository.findTop5ByPublishedTrueOrderByRatingDesc();
     }
+
+
+//    public List<Manual> findNextManualsById(Long id) {
+//        return manualRepository.findTop10ByIdGreaterThanAndPublishedTrueOrderById(id);
+//    }
+
+    public List<Manual> findNextManualsByTagname(String tagname, int offset) {
+        List<Manual> manuals = manualRepository.findByTagsNameAndPublishedTrueOrderByDate(tagname);
+        return manuals.subList(offset, min(offset+10, manuals.size()));
+    }
+
+    public List<Manual> findNextManualsByUserId(Long userId, int offset){
+        List<Manual> manuals = manualRepository.findByUserIdAndPublishedTrueOrderByDate(userId);
+        return manuals.subList(offset, min(offset+10, manuals.size()));
+    }
+
+
 }

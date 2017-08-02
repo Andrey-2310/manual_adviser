@@ -44,6 +44,9 @@ public class Manual {
     @Column(name="manual_published")
     boolean published;
 
+    @Column(name="manual_rating")
+    int rating;
+
     @ManyToOne
     @JoinColumn(name="manual_author")
     @IndexedEmbedded

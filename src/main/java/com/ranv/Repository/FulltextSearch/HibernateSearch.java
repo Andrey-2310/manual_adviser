@@ -18,7 +18,7 @@ public class HibernateSearch {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Manual> fulltextSearching(String keyword){
+    public List<Manual> fulltextSearching(String keyword, int offset){
         if(keyword.equals("")) return Collections.emptyList();
         FullTextEntityManager fullTextEntityManager =
                 org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
@@ -26,6 +26,8 @@ public class HibernateSearch {
                 .buildQueryBuilder().forEntity(Manual.class).get();
         javax.persistence.Query jpaQuery =
                 fullTextEntityManager.createFullTextQuery(createQuery(qb, keyword), Manual.class);
+        jpaQuery.setFirstResult(offset);
+        jpaQuery.setMaxResults(10);
         @SuppressWarnings("unchecked")
         List<Manual> result =  jpaQuery.getResultList();
         return result;

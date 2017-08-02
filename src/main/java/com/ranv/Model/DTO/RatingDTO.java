@@ -12,7 +12,7 @@ public class RatingDTO {
 
     private Long user;
     private Long manual;
-    private Long value;
+    private int value;
 
 
 }

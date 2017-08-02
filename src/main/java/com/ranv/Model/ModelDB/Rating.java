@@ -26,9 +26,9 @@ public class Rating {
     private Manual manual;
 
     @Column(name = "rating_value")
-    private Long value;
+    private int value;
 
-    public Rating(User user, Manual manual, Long value) {
+    public Rating(User user, Manual manual, int value) {
         this.user = user;
         this.manual = manual;
         this.value = value;

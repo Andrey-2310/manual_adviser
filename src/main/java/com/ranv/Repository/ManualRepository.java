@@ -9,6 +9,12 @@ import java.util.List;
 
 @Repository
 public interface ManualRepository extends JpaRepository<Manual, Long> {
-    List<Manual> findByPublished(Boolean published);
-    List<Manual> findTop10ByIdGreaterThanOrderById(Long id);
+
+    List<Manual> findTop10ByIdGreaterThanAndPublishedTrueOrderById(Long id);
+
+    List<Manual> findByTagsNameAndPublishedTrueOrderByDate(String tagname);
+
+    List<Manual> findByUserIdAndPublishedTrueOrderByDate(Long userId);
+
+    List<Manual> findTop5ByPublishedTrueOrderByRatingDesc();
 }
