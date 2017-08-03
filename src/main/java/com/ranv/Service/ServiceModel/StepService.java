@@ -31,11 +31,9 @@ public class StepService {
         return stepRepository.findByManualIdOrderByOrderAsc(id);
     }
 
-
     public Long saveStep(Step step) {
         return stepRepository.save(step).getId();
     }
-
 
     @Transactional
     public void deleteStep(Long stepId) {
