@@ -30,11 +30,11 @@ public class Comment {
     @Column(name = "comment_date")
     private Date date;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="step_id")
     private Step step;
 }

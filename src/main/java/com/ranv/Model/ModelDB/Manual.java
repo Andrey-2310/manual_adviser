@@ -9,7 +9,7 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.List;
 
 
 @Entity
@@ -56,15 +56,15 @@ public class Manual {
     @JoinTable(name = "manual_tag", joinColumns = @JoinColumn(name = "manual_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @IndexedEmbedded
-    private Set<Tag> tags;
+    private List<Tag> tags;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "manual")
-    private Set<Step> steps;
+    private List<Step> steps;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "manual")
-    private Set<Rating> ratings;
+    private List<Rating> ratings;
 
-    public Manual(String name, String date, String introduction, User user, Set<Tag> tags, String image) {
+    public Manual(String name, String date, String introduction, User user, List<Tag> tags, String image) {
         this.name = name;
         this.date = date;
         this.introduction = introduction;

@@ -11,36 +11,44 @@ import java.util.List;
 
 @Service
 public class StepService {
+
+    private final StepRepository stepRepository;
+    private final UnitService unitService;
+    private final CommentService commentService;
+
     @Autowired
-    StepRepository stepRepository;
+    public StepService(StepRepository stepRepository, UnitService unitService, CommentService commentService) {
+        this.stepRepository = stepRepository;
+        this.unitService = unitService;
+        this.commentService = commentService;
+    }
 
     public Step findById(Long id) {
         return stepRepository.findOne(id);
     }
 
-      public List<Step> findStepsByManualId(Long id){
+    public List<Step> findStepsByManualId(Long id) {
         return stepRepository.findByManualIdOrderByOrderAsc(id);
     }
-
 
 
     public Long saveStep(Step step) {
         return stepRepository.save(step).getId();
     }
 
-    @Autowired
-    private UnitService unitService;
 
     @Transactional
     public void deleteStep(Long stepId) {
         unitService.deleteUnitsByStepId(stepId);
+        commentService.deleteByStepId(stepId);
         stepRepository.delete(stepId);
     }
 
     @Transactional
-    public void deleteStepsByManualId(Long id){
-        for(Step step: stepRepository.findByManualId(id)){
+    void deleteStepsByManualId(Long id) {
+        for (Step step : stepRepository.findByManualId(id)) {
             unitService.deleteUnitsByStepId(step.getId());
+            commentService.deleteByStepId(step.getId());
         }
         stepRepository.deleteByManualId(id);
     }
