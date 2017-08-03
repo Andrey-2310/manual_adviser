@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 
@@ -35,6 +36,6 @@ public class Medal {
     private String image;
 
     @ManyToMany(mappedBy = "medals")
-    private Set<User> users;
+    private List<User> users;
 
 }

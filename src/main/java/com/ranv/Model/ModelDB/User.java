@@ -8,6 +8,7 @@ import org.hibernate.search.annotations.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 
@@ -49,17 +50,17 @@ public class User {
     @ManyToMany
     @JoinTable(name = "user_medal", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "medal_id"))
-    private Set<Medal> medals;
+    private List<Medal> medals;
 
     @OneToMany( mappedBy = "user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    private  Set<Manual> manuals;
+    private  List<Manual> manuals;
 
     @OneToMany( mappedBy = "user", cascade=CascadeType.ALL)
-    private  Set<Comment> comments;
+    private  List<Comment> comments;
 
 
     @OneToMany(mappedBy = "user",  cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Rating> ratings;
+    private List<Rating> ratings;
 
     public User(String username, String identity, Role role) {
         this.username = username;

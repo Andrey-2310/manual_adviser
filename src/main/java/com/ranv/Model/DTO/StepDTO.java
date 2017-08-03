@@ -16,6 +16,4 @@ public class StepDTO {
     private String name;
     private int order;
     private List<UnitDTO> units;
-
-
 }
