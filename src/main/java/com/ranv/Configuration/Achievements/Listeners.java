@@ -11,11 +11,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class Listeners {
 
-    @Autowired
-    UserService userService;
+
+    private final UserService userService;
+    private final MedalService medalService;
 
     @Autowired
-    MedalService medalService;
+    public Listeners(UserService userService, MedalService medalService) {
+        this.userService = userService;
+        this.medalService = medalService;
+    }
+
 
     @EventListener
     public void handleCreateManualEvent(CreateManualEvent createManualEvent) {

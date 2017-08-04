@@ -9,8 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class MedalService {
 
+
+    private final MedalRepository medalRepository;
+    private final UserService userService;
+
     @Autowired
-    private MedalRepository medalRepository;
+    public MedalService(MedalRepository medalRepository, UserService userService) {
+        this.medalRepository = medalRepository;
+        this.userService = userService;
+    }
 
     public Medal findById(Long id) {
         return medalRepository.findOne(id);
@@ -20,12 +27,10 @@ public class MedalService {
         return medalRepository.findByName(name);
     }
 
-    @Autowired
-    private UserService userService;
 
-    public void setMedalToUser(Long userId, String medalName){
-        User user =userService.findById(userId);
-        Medal medal= findByName(medalName);
+    public void setMedalToUser(Long userId, String medalName) {
+        User user = userService.findById(userId);
+        Medal medal = findByName(medalName);
         user.getMedals().add(medal);
         userService.updateUser(user);
     }

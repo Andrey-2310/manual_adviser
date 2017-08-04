@@ -5,18 +5,17 @@ import com.ranv.Model.ModelDB.Manual;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
 public class ServiceManualDTO extends ServiceModelDTO<ManualDTO, Manual> {
 
+    private final ServiceTagDTO serviceTagDTO;
+    private final ServiceStepDTO serviceStepDTO;
 
     @Autowired
-    private ServiceTagDTO serviceTagDTO;
-
-    @Autowired
-    private ServiceStepDTO serviceStepDTO;
-
+    public ServiceManualDTO( ServiceTagDTO serviceTagDTO, ServiceStepDTO serviceStepDTO){
+        this.serviceStepDTO=serviceStepDTO;
+        this.serviceTagDTO=serviceTagDTO;
+    }
 
     @Override
     public ManualDTO convertToItemDTO(Manual manual) {

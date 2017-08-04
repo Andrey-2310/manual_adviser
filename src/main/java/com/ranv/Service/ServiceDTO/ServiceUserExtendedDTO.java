@@ -6,16 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 @Service
 public class ServiceUserExtendedDTO extends ServiceModelDTO<UserExtendedDTO, User> {
 
-    @Autowired
     private ServiceManualDTO serviceManualDTO;
+    private ServiceMedalDTO serviceMedalDTO;
 
     @Autowired
-    private ServiceMedalDTO serviceMedalDTO;
+    public ServiceUserExtendedDTO(ServiceManualDTO serviceManualDTO, ServiceMedalDTO serviceMedalDTO) {
+        this.serviceManualDTO = serviceManualDTO;
+        this.serviceMedalDTO = serviceMedalDTO;
+    }
 
     @Override
     public UserExtendedDTO convertToItemDTO(User user) {

@@ -9,6 +9,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServiceRatingDTO extends ServiceModelDTO<RatingDTO, Rating> {
+
+    private final UserRepository userRepository;
+    private final ManualRepository manualRepository;
+
+    @Autowired
+    public ServiceRatingDTO(UserRepository userRepository, ManualRepository manualRepository) {
+        this.userRepository = userRepository;
+        this.manualRepository = manualRepository;
+    }
+
     @Override
     protected RatingDTO convertToItemDTO(Rating rating) {
         RatingDTO ratingDTO = modelMapper.map(rating, RatingDTO.class);
@@ -16,12 +26,6 @@ public class ServiceRatingDTO extends ServiceModelDTO<RatingDTO, Rating> {
         ratingDTO.setUser(rating.getUser().getId());
         return ratingDTO;
     }
-
-
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    ManualRepository manualRepository;
 
     @Override
     public Rating convertFromItemDTO(RatingDTO ratingDTO) {

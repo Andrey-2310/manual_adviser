@@ -10,8 +10,13 @@ import java.util.List;
 
 @Service
 public class TagService {
+
+    private final TagRepository tagRepository;
+
     @Autowired
-    TagRepository tagRepository;
+    public TagService(TagRepository tagRepository) {
+        this.tagRepository = tagRepository;
+    }
 
     public List<Tag> findAll() {
         return tagRepository.findAll();

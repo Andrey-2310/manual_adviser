@@ -10,8 +10,12 @@ import java.util.SortedMap;
 @Service
 public class ServiceTagDTO extends ServiceModelDTO<TagDTO, Tag> {
 
+    private final SortedMap<Long, Integer> usageToWeight;
+
     @Autowired
-    private SortedMap<Long, Integer> usageToWeight;
+    public ServiceTagDTO(SortedMap<Long, Integer> usageToWeight) {
+        this.usageToWeight = usageToWeight;
+    }
 
     @Override
     protected TagDTO convertToItemDTO(Tag tag) {

@@ -9,16 +9,23 @@ import java.util.List;
 
 @Service
 public class UserService {
+
+    private final UserRepository userRepository;
+
     @Autowired
-    UserRepository userRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public User findById(Long id){ return  userRepository.findOne(id);}
+    public User findById(Long id) {
+        return userRepository.findOne(id);
+    }
 
-    public void updateUser(User user){
+    public void updateUser(User user) {
         userRepository.save(user);
     }
 

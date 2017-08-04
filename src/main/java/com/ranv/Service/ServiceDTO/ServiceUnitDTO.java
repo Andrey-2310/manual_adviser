@@ -12,6 +12,14 @@ import java.util.List;
 
 @Service
 public class ServiceUnitDTO extends ServiceModelDTO<UnitDTO, Unit> {
+
+    private final StepService stepService;
+
+    @Autowired
+    public ServiceUnitDTO(StepService stepService) {
+        this.stepService = stepService;
+    }
+
     @Override
     protected UnitDTO convertToItemDTO(Unit unit) {
         UnitDTO unitDTO = modelMapper.map(unit, UnitDTO.class);
@@ -19,8 +27,6 @@ public class ServiceUnitDTO extends ServiceModelDTO<UnitDTO, Unit> {
         return unitDTO;
     }
 
-    @Autowired
-    private StepService stepService;
 
     @Override
     public Unit convertFromItemDTO(UnitDTO unitDTO) {

@@ -10,8 +10,13 @@ import java.util.List;
 
 @Service
 public class UnitService {
+
+    private final UnitRepository unitRepository;
+
     @Autowired
-    private UnitRepository unitRepository;
+    public UnitService(UnitRepository unitRepository) {
+        this.unitRepository = unitRepository;
+    }
 
     public Long saveUnit(Unit unit) {
         return unitRepository.save(unit).getId();
