@@ -17,6 +17,8 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
+    public void saveComment(Comment comment){commentRepository.save(comment);}
+
     public List<Comment> findCommentsByStepId(Long stepId){
        return commentRepository.findAllByStepIdOrderByDateAsc(stepId);
     }

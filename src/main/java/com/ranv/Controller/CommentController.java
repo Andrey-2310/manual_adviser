@@ -4,10 +4,7 @@ import com.ranv.Model.DTO.CommentDTO;
 import com.ranv.Service.ServiceDTO.ServiceCommentDTO;
 import com.ranv.Service.ServiceModel.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,18 +21,25 @@ public class CommentController {
         this.serviceCommentDTO = serviceCommentDTO;
     }
 
-    @RequestMapping("/commentsByStepId/{stepId}")
+
+
+    @RequestMapping("/getCommentsByStepId/{stepId}")
     public List<CommentDTO> getCommentsByStepId(@PathVariable Long stepId) {
         return serviceCommentDTO.convertItems(commentService.findCommentsByStepId(stepId));
     }
 
-    @RequestMapping("/deleteCommentById/{id}")
-    public void deleteCommentById(@PathVariable Long id) {
+    @RequestMapping(value= "/saveComment", method = RequestMethod.POST)
+    public void saveComment(@RequestBody CommentDTO commentDTO) {
+        commentService.saveComment(serviceCommentDTO.convertFromItemDTO(commentDTO));
+    }
+
+    @RequestMapping(value = "/deleteCommentById", method = RequestMethod.POST)
+    public void deleteCommentById(@RequestBody Long id) {
         commentService.deleteById(id);
     }
 
-    @RequestMapping("/deleteCommentsByStepId/{stepId}")
-    public void deleteCommentsByStepId(@PathVariable Long stepId){
+    @RequestMapping(value="/deleteCommentsByStepId", method = RequestMethod.POST)
+    public void deleteCommentsByStepId(@RequestBody Long stepId) {
         commentService.deleteByStepId(stepId);
     }
 }
