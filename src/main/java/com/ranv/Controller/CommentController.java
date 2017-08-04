@@ -21,8 +21,6 @@ public class CommentController {
         this.serviceCommentDTO = serviceCommentDTO;
     }
 
-
-
     @RequestMapping("/getCommentsByStepId/{stepId}")
     public List<CommentDTO> getCommentsByStepId(@PathVariable Long stepId) {
         return serviceCommentDTO.convertItems(commentService.findCommentsByStepId(stepId));
