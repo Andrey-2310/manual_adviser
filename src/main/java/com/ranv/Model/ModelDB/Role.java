@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 
@@ -25,7 +26,7 @@ public class Role {
     private String name;
 
     @OneToMany( mappedBy="role", cascade=CascadeType.ALL)
-    private Set<User> users;
+    private List<User> users;
 
     public Role(String name){
         this.name=name;

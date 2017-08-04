@@ -23,14 +23,14 @@ public class FulfillingDB {
     @Autowired
     private RatingRepository ratingRepository;
 
-    @Autowired
-    private Entities entities;
+//    @Autowired
+//    private Entities entities;
 
     public void fulfillDB() {
         // tagRepository.save(entities.getTags());
         //userRepository.save(entities.getUsers());
        // manualRepository.save(entities.getManuals());
-        manualRepository.save(entities.getRandomManual(40));
+//        manualRepository.save(entities.getRandomManual(40));
         // roleRepository.save(entities.getRoles());
         //ratingRepository.save(new Rating(userRepository.findOne(1L), manualRepository.findOne(1L), 1L));
     }

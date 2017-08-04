@@ -7,6 +7,7 @@ import org.hibernate.search.annotations.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 
@@ -30,7 +31,7 @@ public class Tag {
 
 
     @ManyToMany(mappedBy = "tags")
-    private Set<Manual> manuals;
+    private List<Manual> manuals;
 
     public Tag(String name){
         this.name=name;

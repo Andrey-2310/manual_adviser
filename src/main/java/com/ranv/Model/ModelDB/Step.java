@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -32,8 +33,8 @@ public class Step {
     private Manual manual;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "step")
-    private Set<Unit> units;
+    private List<Unit> units;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "step")
-    private Set<Comment> comments;
+    private List<Comment> comments;
 }

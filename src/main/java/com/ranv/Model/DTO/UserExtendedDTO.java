@@ -22,9 +22,9 @@ public class UserExtendedDTO {
     private String date;
     private String origin;
     private Long roleId;
-    private Set<MedalDTO> medals;
+    private List<MedalDTO> medals;
     private List<ManualDTO> manualDTOS;
-    private Set<Comment> comments;
+    private List<Comment> comments;
 
 
 }
