@@ -19,8 +19,8 @@ public class ManualService {
 
 
     @Autowired
-    public ManualService(ManualRepository manualRepository){
-        this.manualRepository=manualRepository;
+    public ManualService(ManualRepository manualRepository) {
+        this.manualRepository = manualRepository;
     }
 
     public List<Manual> findAll() {
@@ -36,8 +36,6 @@ public class ManualService {
 
 
     public Long saveManual(Manual manual) {
-//        if (manual.getUser().getManuals().size() == 0)
-//            medalService.setMedalToUser(manual.getUser().getId(), "First Manual");
         return manualRepository.save(manual).getId();
     }
 
@@ -60,9 +58,8 @@ public class ManualService {
     }
 
 
-
-    public List<Manual> findPopularManuals(){
-       return manualRepository.findTop5ByPublishedTrueOrderByRatingDesc();
+    public List<Manual> findPopularManuals() {
+        return manualRepository.findTop5ByPublishedTrueOrderByRatingDesc();
     }
 
 
@@ -72,13 +69,15 @@ public class ManualService {
 
     public List<Manual> findNextManualsByTagname(String tagname, int offset) {
         List<Manual> manuals = manualRepository.findByTagsNameAndPublishedTrueOrderByDate(tagname);
-        return manuals.subList(offset, min(offset+10, manuals.size()));
+        return manuals.subList(offset, min(offset + 10, manuals.size()));
     }
 
-    public List<Manual> findNextManualsByUserId(Long userId, int offset){
+    public List<Manual> findNextManualsByUserId(Long userId, int offset) {
         List<Manual> manuals = manualRepository.findByUserIdAndPublishedTrueOrderByDate(userId);
-        return manuals.subList(offset, min(offset+10, manuals.size()));
+        return manuals.subList(offset, min(offset + 10, manuals.size()));
     }
 
-
+    public List<Manual> findNextManualsByDate(Long id) {
+        return manualRepository.findByIdLessThanOrderByIdDesc(id);
+    }
 }
