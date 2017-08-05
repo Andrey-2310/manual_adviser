@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.TreeSet;
 
 @RestController
 @CrossOrigin
@@ -62,6 +60,11 @@ public class ManualController {
         List<ManualDTO> manuals = serviceManualDTO.convertItems(
                 hibernateSearch.fulltextSearching(keyword, offset));
         return manuals;
+    }
+
+    @RequestMapping(path="manuals/new/{id}")
+    public List<ManualDTO> getNewManuals(@PathVariable Long id) {
+        return serviceManualDTO.convertItems(manualService.findNextManualsByDate(id));
     }
 
     @RequestMapping(value = "/popularManuals")
