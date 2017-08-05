@@ -13,8 +13,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AccessToken {
     private String sub;
+    private String name;
+    private String picture;
 
-    public AccessToken(String sub) {
+    public AccessToken(String sub, String name, String picture) {
         this.sub = sub;
+        this.name = name;
+        this.picture = picture;
     }
 }

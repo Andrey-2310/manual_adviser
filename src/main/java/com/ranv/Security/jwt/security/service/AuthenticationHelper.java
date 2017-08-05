@@ -25,7 +25,7 @@ public class AuthenticationHelper {
 
     public static final String AUTHENTICATION_HEADER = "Authorization";
     public static final String AUTHENTICATION_PARAM = "auth";
-    private final String SECRET = "ChangeMeToSomethingElse";
+    private final String SECRET = "dNFdhinaeHQZxTHD7A8W-OI-Ls0x8kqO2sPlhZI2zrFpoJRsA3xsclJfwh9UK92l";
 
     private Long tokenExpirationTime = 3600L;
 
@@ -33,9 +33,7 @@ public class AuthenticationHelper {
 
     public String generateToken(final Long userId) {
         try {
-            AccessToken payload = new AccessToken(
-                    "kek"
-            );
+            AccessToken payload = new AccessToken();
 
             String token = this.objectMapper.writeValueAsString(payload);
             return JwtHelper.encode(token, new MacSigner(SECRET)).getEncoded();

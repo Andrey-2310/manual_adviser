@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @author ikatlinsky

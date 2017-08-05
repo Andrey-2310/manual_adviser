@@ -1,13 +1,15 @@
 package com.ranv.Security.jwt.security.service;
 
-
+import com.cloudinary.Cloudinary;
 import com.ranv.Model.ModelDB.User;
+import com.ranv.Model.ModelDB.UserRole;
 import com.ranv.Repository.UserRepository;
 import com.ranv.Security.jwt.security.exception.ExpiredTokenAuthenticationException;
 import com.ranv.Security.jwt.security.exception.InvalidTokenAuthenticationException;
 import com.ranv.Security.jwt.security.model.JwtAuthenticationToken;
 import com.ranv.Security.jwt.security.model.JwtUserDetails;
 import com.ranv.Security.jwt.security.model.AccessToken;
+import com.ranv.Service.photo.CloudinaryService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -28,37 +30,36 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 
     private final UserRepository userRepository;
     private final AuthenticationHelper authenticationHelper;
+    private final CloudinaryService cloudinaryService;
 
     @Override
     public Authentication authenticate(final Authentication authRequest) {
+        JwtUserDetails userDetails;
+        if (Objects.isNull(authRequest)) {
+            userDetails = new JwtUserDetails(new User("anonymous", UserRole.ROLE_ANONYMOUS, null, null));
+            return new JwtAuthenticationToken(userDetails);
+        }
+
         // Getting string token from authentication request object
         String token = StringUtils.trimToNull((String) authRequest.getCredentials());
 
         //  Deserialize token
         AccessToken accessToken = authenticationHelper.decodeToken(token);
 
-
         // Getting user id from token
         String sub = accessToken.getSub();
         if (Objects.isNull(sub)) {
-            throw new InvalidTokenAuthenticationException("Token does not contain a user id.");
+            throw new InvalidTokenAuthenticationException("Token does not contain a user sub.");
         }
 
         // Getting user from database
         User user = userRepository.findBySub(sub);
         if (Objects.isNull(user)) {
-            throw new InvalidTokenAuthenticationException("Token does not contain existed user id.");
+            user = userRepository.save(new User(accessToken.getName(), UserRole.ROLE_USER,
+                    cloudinaryService.getPhoto(accessToken.getPicture()), sub));
         }
 
-        // Return authenticated Authentication
-        JwtUserDetails userDetails = new JwtUserDetails(user);
-        return new JwtAuthenticationToken(userDetails);
-    }
-
-    private void checkIsExpired(final Long tokenExpirationTime) {
-        if ((System.currentTimeMillis() / MILLIS_IN_SECOND) > tokenExpirationTime) {
-            throw new ExpiredTokenAuthenticationException();
-        }
+        return new JwtAuthenticationToken(new JwtUserDetails(user));
     }
 
     @Override
