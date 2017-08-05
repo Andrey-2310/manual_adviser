@@ -78,6 +78,6 @@ public class ManualService {
     }
 
     public List<Manual> findNextManualsByDate(Long id) {
-        return manualRepository.findByIdLessThanOrderByIdDesc(id);
+        return manualRepository.findTop10ByIdLessThanAndPublishedTrueOrderByIdDesc(id);
     }
 }

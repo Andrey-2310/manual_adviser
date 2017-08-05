@@ -18,5 +18,5 @@ public interface ManualRepository extends JpaRepository<Manual, Long> {
 
     List<Manual> findTop5ByPublishedTrueOrderByRatingDesc();
 
-    List<Manual> findByIdLessThanOrderByIdDesc(Long id);
+    List<Manual> findTop10ByIdLessThanAndPublishedTrueOrderByIdDesc(Long id);
 }
