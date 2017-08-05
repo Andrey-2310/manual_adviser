@@ -7,6 +7,7 @@ import com.ranv.Service.ServiceDTO.ServiceUserDTO;
 import com.ranv.Service.ServiceDTO.ServiceUserExtendedDTO;
 import com.ranv.Service.ServiceModel.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class UserController {
         this.serviceUserExtendedDTO = serviceUserExtendedDTO;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     @RequestMapping("/users")
     public List<UserDTO> users() {
         List<User> users = userService.findAll();

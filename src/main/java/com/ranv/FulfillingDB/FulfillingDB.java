@@ -18,9 +18,6 @@ public class FulfillingDB {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
     private RatingRepository ratingRepository;
 
 //    @Autowired

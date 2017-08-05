@@ -43,9 +43,12 @@ public class User {
     @Column(name="user_origin")
     private String origin;
 
-    @ManyToOne
-    @JoinColumn(name="role_id", nullable=false)
-    private Role role;
+    @Column(name="user_sub")
+    private String sub;
+
+    @Column(name="user_role")
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     @ManyToMany
     @JoinTable(name = "user_medal", joinColumns = @JoinColumn(name = "user_id"),
@@ -62,7 +65,7 @@ public class User {
     @OneToMany(mappedBy = "user",  cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Rating> ratings;
 
-    public User(String username, String identity, Role role) {
+    public User(String username, String identity, UserRole role) {
         this.username = username;
         this.identity = identity;
         this.role = role;
