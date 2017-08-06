@@ -1,11 +1,10 @@
-package com.ranv.Service.photo;
+package com.ranv.service.photo;
 
 import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.Map;
 
 @Service
 public class CloudinaryService {

@@ -1,8 +1,9 @@
-package com.ranv.Service.ServiceModel;
+package com.ranv.service.serviceModel;
 
-import com.ranv.Model.ModelDB.Manual;
-import com.ranv.Model.ModelDB.Step;
-import com.ranv.Repository.ManualRepository;
+import com.ranv.model.DB.Manual;
+import com.ranv.model.DB.Step;
+import com.ranv.repository.ManualRepository;
+import com.ranv.service.serviceModel.MedalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,11 +24,11 @@ public class ManualService {
         this.manualRepository = manualRepository;
     }
 
-    public List<Manual> findAll() {
+    public List<com.ranv.model.DB.Manual> findAll() {
         return manualRepository.findAll();
     }
 
-    public Manual findOne(Long id) {
+    public com.ranv.model.DB.Manual findOne(Long id) {
         return manualRepository.findOne(id);
     }
 

@@ -1,9 +1,9 @@
-package com.ranv.Service.ServiceDTO;
+package com.ranv.service.serviceDTO;
 
-import com.ranv.Model.DTO.RatingDTO;
-import com.ranv.Model.ModelDB.Rating;
-import com.ranv.Repository.ManualRepository;
-import com.ranv.Repository.UserRepository;
+import com.ranv.model.DB.Rating;
+import com.ranv.model.DTO.RatingDTO;
+import com.ranv.repository.ManualRepository;
+import com.ranv.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

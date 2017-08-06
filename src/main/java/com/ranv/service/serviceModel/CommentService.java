@@ -1,7 +1,7 @@
-package com.ranv.Service.ServiceModel;
+package com.ranv.service.serviceModel;
 
-import com.ranv.Model.ModelDB.Comment;
-import com.ranv.Repository.CommentRepository;
+import com.ranv.model.DB.Comment;
+import com.ranv.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

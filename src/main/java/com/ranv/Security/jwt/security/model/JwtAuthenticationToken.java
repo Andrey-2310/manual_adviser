@@ -36,7 +36,7 @@ public class JwtAuthenticationToken implements Authentication {
 
     @Override
     public String getName() {
-        return Objects.isNull(this.userDetails) ? null : this.userDetails.getUsername();
+        return Objects.isNull(this.userDetails) ? null : this.userDetails.getSub();
     }
 
     @Override

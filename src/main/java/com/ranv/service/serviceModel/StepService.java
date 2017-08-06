@@ -1,8 +1,8 @@
-package com.ranv.Service.ServiceModel;
+package com.ranv.service.serviceModel;
 
-import com.ranv.Model.ModelDB.Step;
-import com.ranv.Model.ModelDB.Unit;
-import com.ranv.Repository.StepRepository;
+import com.ranv.model.DB.Step;
+import com.ranv.model.DB.Unit;
+import com.ranv.repository.StepRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

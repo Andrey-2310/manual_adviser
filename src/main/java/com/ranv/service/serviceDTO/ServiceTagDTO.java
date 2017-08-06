@@ -1,7 +1,7 @@
-package com.ranv.Service.ServiceDTO;
+package com.ranv.service.serviceDTO;
 
-import com.ranv.Model.DTO.TagDTO;
-import com.ranv.Model.ModelDB.Tag;
+import com.ranv.model.DB.Tag;
+import com.ranv.model.DTO.TagDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

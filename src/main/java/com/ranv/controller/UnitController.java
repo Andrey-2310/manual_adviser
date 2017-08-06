@@ -2,6 +2,7 @@ package com.ranv.controller;
 
 import com.ranv.model.DTO.UnitDTO;
 import com.ranv.service.serviceDTO.ServiceUnitDTO;
+
 import com.ranv.service.serviceModel.UnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class UnitController {
 
-    private final UnitService unitService;
+    private final com.ranv.service.serviceModel.UnitService unitService;
     private final ServiceUnitDTO serviceUnitDTO;
 
     @Autowired

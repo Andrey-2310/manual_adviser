@@ -1,6 +1,6 @@
 package com.ranv.controller;
 
-import com.ranv.configuration.achievements.Events.CreateManualEvent;
+import com.ranv.configuration.achievements.events.CreateManualEvent;
 import com.ranv.model.DTO.ManualDTO;
 import com.ranv.model.DB.Manual;
 import com.ranv.repository.fulltextSearch.HibernateSearch;

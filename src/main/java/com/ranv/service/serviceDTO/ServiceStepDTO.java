@@ -1,8 +1,8 @@
-package com.ranv.Service.ServiceDTO;
+package com.ranv.service.serviceDTO;
 
-import com.ranv.Model.DTO.StepDTO;
-import com.ranv.Model.ModelDB.Step;
-import com.ranv.Service.ServiceModel.ManualService;
+import com.ranv.model.DB.Step;
+import com.ranv.model.DTO.StepDTO;
+import com.ranv.service.serviceModel.ManualService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

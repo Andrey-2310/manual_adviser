@@ -1,4 +1,4 @@
-package com.ranv.configuration.achievements.Events;
+package com.ranv.configuration.achievements.events;
 
 import com.ranv.model.DB.Manual;
 import org.springframework.context.ApplicationEvent;

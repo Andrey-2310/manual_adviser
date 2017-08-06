@@ -1,7 +1,7 @@
-package com.ranv.Service.ServiceDTO;
+package com.ranv.service.serviceDTO;
 
-import com.ranv.Model.DTO.MedalDTO;
-import com.ranv.Model.ModelDB.Medal;
+import com.ranv.model.DB.Medal;
+import com.ranv.model.DTO.MedalDTO;
 import org.springframework.stereotype.Service;
 
 @Service

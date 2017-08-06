@@ -1,7 +1,7 @@
-package com.ranv.Service.ServiceDTO;
+package com.ranv.service.serviceDTO;
 
-import com.ranv.Model.DTO.UserExtendedDTO;
-import com.ranv.Model.ModelDB.User;
+import com.ranv.model.DB.User;
+import com.ranv.model.DTO.UserExtendedDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

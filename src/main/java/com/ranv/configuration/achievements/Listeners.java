@@ -1,7 +1,7 @@
 package com.ranv.configuration.achievements;
 
-import com.ranv.configuration.achievements.Events.CreateManualEvent;
-import com.ranv.configuration.achievements.Events.RatingEvent;
+import com.ranv.configuration.achievements.events.CreateManualEvent;
+import com.ranv.configuration.achievements.events.RatingEvent;
 import com.ranv.service.serviceModel.MedalService;
 import com.ranv.service.serviceModel.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
-package com.ranv.Service.ServiceModel;
+package com.ranv.service.serviceModel;
 
-import com.ranv.Model.ModelDB.Tag;
-import com.ranv.Repository.TagRepository;
+import com.ranv.model.DB.Tag;
+import com.ranv.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -20,11 +20,13 @@ public class JwtUserDetails implements UserDetails {
 
     private Long id;
     private String username;
+    private String sub;
     private Set<GrantedAuthority> authorities;
 
     public JwtUserDetails(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
+        this.sub = user.getSub();
         this.authorities = new HashSet<>();
         this.authorities.add(new SimpleGrantedAuthority(user.getRole().name()));
     }

@@ -1,7 +1,7 @@
-package com.ranv.Service.ServiceModel;
+package com.ranv.service.serviceModel;
 
-import com.ranv.Model.ModelDB.Unit;
-import com.ranv.Repository.UnitRepository;
+import com.ranv.model.DB.Unit;
+import com.ranv.repository.UnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

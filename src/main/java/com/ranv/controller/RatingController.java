@@ -1,6 +1,6 @@
 package com.ranv.controller;
 
-import com.ranv.configuration.achievements.Events.RatingEvent;
+import com.ranv.configuration.achievements.events.RatingEvent;
 import com.ranv.model.DTO.RatingDTO;
 import com.ranv.model.DB.Rating;
 import com.ranv.service.eventsPublishing.Publisher;

@@ -1,18 +1,13 @@
 package com.ranv.model.DB;
 
-import com.cloudinary.Cloudinary;
-import com.ranv.Service.photo.CloudinaryService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.search.annotations.Field;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.IOException;
 import java.util.List;
 
 
@@ -22,7 +17,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Component
 public class User {
 
     @Id
