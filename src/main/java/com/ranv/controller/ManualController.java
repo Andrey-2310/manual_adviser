@@ -9,6 +9,7 @@ import com.ranv.service.serviceDTO.ServiceManualDTO;
 import com.ranv.service.serviceModel.ManualService;
 import com.ranv.service.serviceModel.StepService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -77,12 +78,14 @@ public class ManualController {
         return serviceManualDTO.convertItems(manualService.findNextManualsByDate(id));
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping("/deletemanual/{id}")
     public void deleteManual(@PathVariable Long id) {
         manualService.deleteManual(id);
     }
 
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(value = "/newinstruction", method = RequestMethod.POST)
     public Long newInstruction(@RequestBody ManualDTO manDTO) {
         Long id = manualService.saveManual(serviceManualDTO.convertFromItemDTO(manDTO));
@@ -90,6 +93,7 @@ public class ManualController {
         return id;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(value = "/updatemanual", method = RequestMethod.POST)
     public void updateManual(@RequestBody ManualDTO manualDTO) {
         manualService.updateManual(serviceManualDTO.convertFromItemDTO(manualDTO));

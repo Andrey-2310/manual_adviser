@@ -5,6 +5,7 @@ import com.ranv.service.serviceDTO.ServiceStepDTO;
 import com.ranv.service.serviceDTO.ServiceUnitDTO;
 import com.ranv.service.serviceModel.StepService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -32,11 +33,13 @@ public class StepController {
         return stepDTO;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(value = "/updatestep", method = RequestMethod.POST)
     public void updateStep(@RequestBody StepDTO stepDTO) {
         stepService.updateStep(serviceStepDTO.convertFromItemDTO(stepDTO));
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(value = "/addStep", method = RequestMethod.POST)
     public Long addStep(@RequestBody StepDTO stepDTO) {
         return stepService.saveStep(serviceStepDTO.convertFromItemDTO(stepDTO));

@@ -5,6 +5,7 @@ import com.ranv.service.serviceDTO.ServiceUnitDTO;
 
 import com.ranv.service.serviceModel.UnitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,13 +21,15 @@ public class UnitController {
         this.serviceUnitDTO=serviceUnitDTO;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping("/deleteunit/{id}")
     public void deleteUnit(@PathVariable Long id) {
         unitService.delete(id);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(value = "/addUnit", method = RequestMethod.POST)
-    public void addUnit(@RequestBody UnitDTO unitDTO) {
-        unitService.saveUnit(serviceUnitDTO.convertFromItemDTO(unitDTO));
+    public Long addUnit(@RequestBody UnitDTO unitDTO) {
+        return unitService.saveUnit(serviceUnitDTO.convertFromItemDTO(unitDTO));
     }
 }
