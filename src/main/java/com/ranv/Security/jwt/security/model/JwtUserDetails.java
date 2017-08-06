@@ -1,7 +1,7 @@
 package com.ranv.Security.jwt.security.model;
 
 
-import com.ranv.Model.ModelDB.User;
+import com.ranv.model.DB.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
