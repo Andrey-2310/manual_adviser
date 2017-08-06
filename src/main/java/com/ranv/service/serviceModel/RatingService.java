@@ -5,6 +5,8 @@ import com.ranv.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RatingService {
 
@@ -17,5 +19,9 @@ public class RatingService {
 
     public void saveRating(Rating rating) {
         ratingRepository.save(rating);
+    }
+
+    public List<Rating> getRatingsByUserId(Long userId) {
+        return ratingRepository.findAllByUser_Id(userId);
     }
 }
