@@ -32,6 +32,6 @@ public class MedalService {
         User user = userService.findById(userId);
         Medal medal = findByName(medalName);
         user.getMedals().add(medal);
-        userService.updateUser(user);
+        userService.saveUser(user);
     }
 }

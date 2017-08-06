@@ -26,7 +26,10 @@ public class UserService {
     }
 
     public void updateUser(User user) {
-        userRepository.save(user);
+        userRepository.updatingUser( user.getUsername(), user.getOrigin(),
+                user.getImage(), user.getId());
     }
+
+    public void saveUser(User user){userRepository.save(user);}
 
 }

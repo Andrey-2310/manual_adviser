@@ -44,8 +44,9 @@ public class UserController {
         return serviceUserExtendedDTO.convertToItemDTO(user);
     }
 
-    @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
+        @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
     public void updateUser(@RequestBody UserExtendedDTO userExtDTO) {
         userService.updateUser(serviceUserExtendedDTO.convertFromItemDTO(userExtDTO));
     }
+
 }
