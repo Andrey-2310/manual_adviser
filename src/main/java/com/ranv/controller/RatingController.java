@@ -43,4 +43,10 @@ public class RatingController {
     public List<RatingDTO> getCommentsByStepId(@PathVariable Long userId) {
         return serviceRatingDTO.convertItems(ratingService.getRatingsByUserId(userId));
     }
+
+    @RequestMapping("/getRatingsByUserIdAndAuthorId/{userId}/{authorId}")
+    public List<RatingDTO> getCommentsByStepIdAndAuthorId(@PathVariable Long userId, @PathVariable Long authorId ) {
+        return serviceRatingDTO.convertItems(ratingService.getRatingsByUserIdAndAuthorId(userId, authorId));
+    }
+
 }

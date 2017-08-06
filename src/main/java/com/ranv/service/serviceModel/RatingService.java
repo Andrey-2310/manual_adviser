@@ -24,4 +24,8 @@ public class RatingService {
     public List<Rating> getRatingsByUserId(Long userId) {
         return ratingRepository.findAllByUser_Id(userId);
     }
+
+    public List<Rating> getRatingsByUserIdAndAuthorId(Long userId, Long authorId) {
+        return ratingRepository.findAllByUser_IdAndManual_User_Id(userId, authorId);
+    }
 }

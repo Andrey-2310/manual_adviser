@@ -9,5 +9,7 @@ import java.util.List;
 
 @Repository
 public interface RatingRepository extends JpaRepository<Rating, Long> {
-    public List<Rating> findAllByUser_Id(Long userId);
+    List<Rating> findAllByUser_Id(Long userId);
+
+    List<Rating> findAllByUser_IdAndManual_User_Id(Long userId, Long authorId);
 }
