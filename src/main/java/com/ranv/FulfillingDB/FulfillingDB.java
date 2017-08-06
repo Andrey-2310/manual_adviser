@@ -1,6 +1,6 @@
 package com.ranv.FulfillingDB;
 
-import com.ranv.Repository.*;
+import com.ranv.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
