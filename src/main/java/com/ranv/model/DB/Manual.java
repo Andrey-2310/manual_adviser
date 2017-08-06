@@ -59,6 +59,7 @@ public class Manual {
     private List<Tag> tags;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "manual")
+    @IndexedEmbedded
     private List<Step> steps;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "manual")

@@ -3,6 +3,7 @@ package com.ranv.model.DB;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.search.annotations.Field;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,6 +22,7 @@ public class Step {
     private Long id;
 
     @Column(name="step_name")
+    @Field
     private String name;
 
     @Column(name="step_order")

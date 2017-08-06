@@ -36,7 +36,7 @@ public class HibernateSearch {
     private  org.apache.lucene.search.Query createQuery(QueryBuilder qb, String keyword){
         return    qb
                 .keyword()
-                .onFields("name", "introduction", "user.username", "tags.name")
+                .onFields("name", "introduction", "user.username", "tags.name", "steps.name")
                 .matching(keyword)
                 .createQuery();
     }

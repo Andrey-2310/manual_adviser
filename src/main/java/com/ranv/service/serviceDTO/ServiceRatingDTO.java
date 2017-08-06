@@ -1,7 +1,7 @@
 package com.ranv.service.serviceDTO;
 
-import com.ranv.model.DB.Rating;
 import com.ranv.model.DTO.RatingDTO;
+import com.ranv.model.DB.Rating;
 import com.ranv.repository.ManualRepository;
 import com.ranv.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

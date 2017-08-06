@@ -17,11 +17,6 @@ public class BuildSearchIndex
     @PersistenceContext
     private EntityManager entityManager;
 
-    /**
-     * Create an initial Lucene index for the data already present in the
-     * database.
-     * This method is called when Spring's startup.
-     */
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
         try {
