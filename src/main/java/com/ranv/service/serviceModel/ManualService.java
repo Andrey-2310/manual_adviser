@@ -37,6 +37,9 @@ public class ManualService {
 
 
     public Long saveManual(Manual manual) {
+        java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        manual.setDate(sdf.format(dt));
         return manualRepository.save(manual).getId();
     }
 
@@ -60,7 +63,7 @@ public class ManualService {
 
 
     public List<Manual> findPopularManuals() {
-        return manualRepository.findTop5ByPublishedTrueOrderByRatingDesc();
+        return manualRepository.findTop10ByPublishedTrueOrderByRatingDesc();
     }
 
 

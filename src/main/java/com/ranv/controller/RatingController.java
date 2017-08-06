@@ -39,7 +39,7 @@ public class RatingController {
         publisher.publish(new RatingEvent(this, rating.getManual()));
     }
 
-    @RequestMapping("/setRatingsByUserId/{userId}")
+    @RequestMapping("/getRatingsByUserId/{userId}")
     public List<RatingDTO> getCommentsByStepId(@PathVariable Long userId) {
         return serviceRatingDTO.convertItems(ratingService.getRatingsByUserId(userId));
     }

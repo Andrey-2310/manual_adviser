@@ -72,6 +72,10 @@ public class ManualController {
         return serviceManualDTO.convertItems(manualService.findPopularManuals());
     }
 
+    @RequestMapping(value = "/newManuals/{id}")
+    public List<ManualDTO> getPopularManuals(@PathVariable Long id) {
+        return serviceManualDTO.convertItems(manualService.findNextManualsByDate(id));
+    }
 
     @RequestMapping("/deletemanual/{id}")
     public void deleteManual(@PathVariable Long id) {

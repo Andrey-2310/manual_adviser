@@ -79,6 +79,7 @@ public class User {
         this.sub = sub;
         this.image = image;
         this.date = sdf.format(dt);
+        this.origin = "Belarus";
     }
 
 

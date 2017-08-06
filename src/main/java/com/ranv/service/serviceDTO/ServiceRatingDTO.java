@@ -21,7 +21,8 @@ public class ServiceRatingDTO extends ServiceModelDTO<RatingDTO, Rating> {
 
     @Override
     protected RatingDTO convertToItemDTO(Rating rating) {
-        RatingDTO ratingDTO = modelMapper.map(rating, RatingDTO.class);
+        RatingDTO ratingDTO = new RatingDTO();
+        ratingDTO.setValue(rating.getValue());
         ratingDTO.setManual(rating.getManual().getId());
         ratingDTO.setUser(rating.getUser().getId());
         return ratingDTO;
