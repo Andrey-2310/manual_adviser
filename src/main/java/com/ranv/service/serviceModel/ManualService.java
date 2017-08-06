@@ -3,7 +3,7 @@ package com.ranv.service.serviceModel;
 import com.ranv.model.DB.Manual;
 import com.ranv.model.DB.Step;
 import com.ranv.repository.ManualRepository;
-import com.ranv.service.serviceModel.MedalService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -79,6 +79,8 @@ public class ManualService {
     }
 
     public List<Manual> findNextManualsByDate(Long id) {
-        return manualRepository.findTop10ByIdLessThanAndPublishedTrueOrderByIdDesc(id);
+        if (id != -1)
+            return manualRepository.findTop10ByIdLessThanAndPublishedTrueOrderByIdDesc(id);
+        return manualRepository.findTop10ByPublishedTrueOrderByIdDesc();
     }
 }
