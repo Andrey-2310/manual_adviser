@@ -30,7 +30,7 @@ public class UserController {
         this.serviceUserExtendedDTO = serviceUserExtendedDTO;
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping("/users")
     public List<UserDTO> users() {
         List<User> users = userService.findAll();
