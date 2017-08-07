@@ -15,6 +15,7 @@ public class CommentDTO {
     private String text;
     private Date date;
     private String username;
+    private String userImage;
     private Long userId;
     private Long stepId;
 }

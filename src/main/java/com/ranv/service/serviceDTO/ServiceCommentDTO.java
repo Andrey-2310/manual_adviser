@@ -24,6 +24,7 @@ public class ServiceCommentDTO extends ServiceModelDTO<CommentDTO, Comment> {
         CommentDTO commentDTO = modelMapper.map(comment, CommentDTO.class);
         commentDTO.setStepId(comment.getStep().getId());
         commentDTO.setUsername(comment.getUser().getUsername());
+        commentDTO.setUserImage(comment.getUser().getImage());
         commentDTO.setUserId(comment.getUser().getId());
         return commentDTO;
     }
