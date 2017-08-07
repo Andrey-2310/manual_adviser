@@ -8,6 +8,7 @@ import com.ranv.service.serviceDTO.ServiceRatingDTO;
 import com.ranv.service.serviceModel.ManualService;
 import com.ranv.service.serviceModel.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class RatingController {
         this.publisher = publisher;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(value = "/setRating", method = RequestMethod.POST)
     public void setRating(@RequestBody RatingDTO ratingDTO) {
         Rating rating = serviceRatingDTO.convertFromItemDTO(ratingDTO);

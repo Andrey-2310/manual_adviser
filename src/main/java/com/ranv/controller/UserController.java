@@ -30,7 +30,6 @@ public class UserController {
         this.serviceUserExtendedDTO = serviceUserExtendedDTO;
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping("/users")
     public List<UserDTO> users() {
         List<User> users = userService.findAll();
@@ -45,7 +44,8 @@ public class UserController {
         return serviceUserExtendedDTO.convertToItemDTO(user);
     }
 
-        @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
     public void updateUser(@RequestBody UserExtendedDTO userExtDTO) {
         userService.updateUser(serviceUserExtendedDTO.convertFromItemDTO(userExtDTO));
     }

@@ -5,6 +5,7 @@ import com.ranv.model.DB.Tag;
 import com.ranv.service.serviceDTO.ServiceTagDTO;
 import com.ranv.service.serviceModel.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class TagController {
         this.serviceTagDTO = serviceTagDTO;
     }
 
-
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(value = "/addtag", method = RequestMethod.POST)
     public Long newInstruction(@RequestBody TagDTO tagDTO) {
         return tagService.saveAndGetId(serviceTagDTO.convertFromItemDTO(tagDTO));
