@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
 
 
 
@@ -28,7 +27,7 @@ public class Comment {
 
     @NotNull
     @Column(name = "comment_date")
-    private Date date;
+    private String date;
 
     @ManyToOne
     @JoinColumn(name="user_id")

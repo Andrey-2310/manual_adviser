@@ -17,7 +17,11 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
-    public void saveComment(Comment comment){commentRepository.save(comment);}
+    public void saveComment(Comment comment){
+        java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        comment.setDate(sdf.format(dt));
+        commentRepository.save(comment);}
 
     public List<Comment> findCommentsByStepId(Long stepId){
        return commentRepository.findAllByStepIdOrderByDateAsc(stepId);

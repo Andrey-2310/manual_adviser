@@ -49,4 +49,10 @@ public class StepController {
     public void deleteStep(@PathVariable Long id) {
         stepService.deleteStep(id);
     }
+
+    @RequestMapping("/userIdByStepId/{stepId}")
+    public Long getUserIdByStepId(@PathVariable Long stepId) {
+        return stepService.findById(stepId).getManual().getUser().getId();
+    }
+
 }
